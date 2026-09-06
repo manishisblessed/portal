@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db";
+import { isDemoMode, findDemoUserById } from "@/lib/demo-accounts";
 
 /**
  * Scheme gate — "no scheme, no transaction".
@@ -38,6 +39,9 @@ export async function requireActiveScheme(
   userId: string,
   _opts: { mdr?: boolean } = {}
 ): Promise<void> {
+  // Demo mode: no DB, every demo user is treated as fully provisioned.
+  if (isDemoMode()) return;
+
   const user = await prisma.user.findUnique({
     where: { id: userId },
     select: {
@@ -65,6 +69,23 @@ export async function getSchemeStatus(userId: string): Promise<{
   mdrSchemeName: string | null;
   role: string | null;
 }> {
+  // Demo mode: report a fully-provisioned scheme for network roles so the
+  // dashboard banner never blocks; staff roles are not scheme-priced.
+  if (isDemoMode()) {
+    const demoUser = findDemoUserById(userId);
+    const role = demoUser?.role ?? null;
+    const applicable =
+      !!role && NETWORK_ROLES.includes(role as (typeof NETWORK_ROLES)[number]);
+    return {
+      applicable,
+      hasScheme: applicable,
+      hasMdrScheme: applicable,
+      schemeName: applicable ? "Demo Standard Plan" : null,
+      mdrSchemeName: applicable ? "Demo Standard Plan" : null,
+      role,
+    };
+  }
+
   const user = await prisma.user.findUnique({
     where: { id: userId },
     select: {

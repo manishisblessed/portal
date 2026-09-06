@@ -8,7 +8,12 @@
 // =====================================================================
 
 import { prisma } from "@/lib/db";
-import { SERVICE_KEYS, isConfigOnlyKey } from "@/lib/services/catalog";
+import { SERVICE_KEYS, isConfigOnlyKey, KNOWN_SERVICE_ROUTES } from "@/lib/services/catalog";
+import { isDemoMode } from "@/lib/demo-accounts";
+
+/** All per-user assignable rails (type SERVICE) — used to open every service
+ *  tab in demo mode so all roles can browse the full navigation. */
+const DEMO_SERVICE_KEYS = KNOWN_SERVICE_ROUTES.filter((r) => r.type === "SERVICE").map((r) => r.key);
 
 /** Service keys for which staff roles do NOT bypass the per-user allowlist.
  *  BBPS is retailer-only; payout is network-only — admins must not transact. */
@@ -59,6 +64,7 @@ export async function isServiceEnabled(
   key: string,
   opts?: ServiceGuardOptions
 ): Promise<boolean> {
+  if (isDemoMode()) return true;
   const route = await prisma.serviceRoute.findUnique({
     where: { key },
     select: { enabled: true },
@@ -84,6 +90,8 @@ export async function isServiceEnabledForUser(
   // On/Off panel only. Skip the allowlist check so a granted sub-rail
   // (e.g. bbps_credit_card) is not blocked by an un-assignable master key.
   if (isConfigOnlyKey(key)) return true;
+
+  if (isDemoMode()) return true;
 
   if (role && STAFF_ROLES.has(role) && !NO_STAFF_BYPASS_KEYS.has(key)) return true;
 
@@ -135,6 +143,9 @@ export async function getEffectiveServiceKeys(
   userId: string,
   role?: string
 ): Promise<string[]> {
+  // Demo mode: no DB. Open every service rail so all roles see all tabs.
+  if (isDemoMode()) return [...DEMO_SERVICE_KEYS];
+
   const routes = await prisma.serviceRoute.findMany({
     where: { enabled: true, type: "SERVICE" },
     select: { key: true },

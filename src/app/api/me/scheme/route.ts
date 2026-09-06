@@ -3,6 +3,7 @@ import { requireAuth, AuthError } from "@/lib/auth-server";
 import { prisma } from "@/lib/db";
 import { serializeSchemeForRole } from "@/lib/scheme/serialize";
 import { isSelfOrDirectChild } from "@/lib/security/ownership";
+import { isDemoMode } from "@/lib/demo-accounts";
 
 export const fetchCache = "force-no-store";
 export const dynamic = "force-dynamic";
@@ -32,6 +33,11 @@ export async function GET(req: Request) {
 
   const { searchParams } = new URL(req.url);
   const targetUserId = (searchParams.get("userId") ?? "").trim() || user.id;
+
+  // Demo mode: no DB — return an empty-but-valid scheme payload.
+  if (isDemoMode()) {
+    return NextResponse.json({ scheme: null, role: user.role, forUser: null });
+  }
 
   // A parent may only view a direct child's scheme (or their own).
   if (targetUserId !== user.id && !(await isSelfOrDirectChild(targetUserId, user)))

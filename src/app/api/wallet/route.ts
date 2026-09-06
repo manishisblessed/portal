@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAuth, AuthError } from "@/lib/auth-server";
 import { prisma } from "@/lib/db";
+import { isDemoMode, findDemoUserById } from "@/lib/demo-accounts";
 
 export const fetchCache = "force-no-store";
 export const dynamic = "force-dynamic";
@@ -15,13 +16,29 @@ export async function GET(req: Request) {
     throw e;
   }
 
+  const { searchParams } = new URL(req.url);
+
+  // Demo mode: no DB — serve the in-memory demo user's wallet balance.
+  if (isDemoMode()) {
+    const demoUser = findDemoUserById(user.id);
+    const balance = demoUser?.walletBalance ?? 0;
+    if (searchParams.get("balanceOnly") === "1") {
+      return NextResponse.json({ balance });
+    }
+    return NextResponse.json({
+      balance,
+      monthlyIn: 0,
+      monthlyOut: 0,
+      recentTxns: [],
+    });
+  }
+
   const dbUser = await prisma.user.findUniqueOrThrow({
     where: { id: user.id },
     select: { walletBalance: true },
   });
 
   // Light mode for the topbar poller — skips the txn/aggregate queries.
-  const { searchParams } = new URL(req.url);
   if (searchParams.get("balanceOnly") === "1") {
     return NextResponse.json({ balance: Number(dbUser.walletBalance) });
   }

@@ -1,12 +1,52 @@
 import { NextResponse } from "next/server";
 import { requireAuth } from "@/lib/auth-server";
 import { prisma } from "@/lib/db";
+import { isDemoMode, findDemoUserById } from "@/lib/demo-accounts";
 
 export const fetchCache = "force-no-store";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   const session = await requireAuth();
+
+  // Demo mode: no DB — build the performance payload from the in-memory user.
+  if (isDemoMode()) {
+    const d = findDemoUserById(session.id);
+    return NextResponse.json({
+      user: {
+        id: session.id,
+        name: d?.name ?? session.name,
+        email: d?.email ?? session.email,
+        phone: d?.phone ?? session.phone,
+        role: d?.role ?? session.role,
+        status: d?.status ?? "ACTIVE",
+        shopName: d?.shopName ?? null,
+        shopAddress: null,
+        pincode: null,
+        state: null,
+        city: null,
+        walletBalance: d?.walletBalance ?? 0,
+        lastLoginLat: null,
+        lastLoginLng: null,
+        lastLoginAt: null,
+        twoFactorEnabled: true,
+        createdAt: new Date().toISOString(),
+        parentId: d?.parentId ?? null,
+        _count: { transactions: 0, wallet: 0, children: 0 },
+      },
+      parentInfo: null,
+      loginHistory: [],
+      stats: {
+        totalTransactions30d: 0,
+        totalAmount30d: 0,
+        successfulTxns: 0,
+        failedTxns: 0,
+        successRate: 0,
+        networkSize: 0,
+        walletTransactions: 0,
+      },
+    });
+  }
 
   const user = await prisma.user.findUnique({
     where: { id: session.id },
