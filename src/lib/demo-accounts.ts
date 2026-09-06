@@ -169,6 +169,24 @@ export function findDemoUserById(id: string): DemoUser | undefined {
 }
 
 /**
+ * Demo 2FA. With no database there is no per-user TOTP secret to validate
+ * against, so during demo mode every user is taken through the standard 2FA
+ * screen and any 6-digit numeric code (e.g. the hinted 123456) is accepted.
+ * Backup codes accept any 6+ character value. This lets us exercise the full
+ * login → 2FA → dashboard flow before the real backend is connected.
+ */
+export const DEMO_2FA_CODE = "123456";
+
+export function verifyDemo2FACode(
+  code: string,
+  type: "totp" | "backup" = "totp"
+): boolean {
+  const c = (code ?? "").trim();
+  if (type === "backup") return c.replace(/-/g, "").length >= 6;
+  return /^\d{6}$/.test(c);
+}
+
+/**
  * Demo mode is active when there is no database configured, or when it is
  * explicitly forced with DEMO_MODE=true / DEMO_MODE=1. Forcing lets a server
  * that still has a leftover DATABASE_URL run on the in-memory demo accounts.

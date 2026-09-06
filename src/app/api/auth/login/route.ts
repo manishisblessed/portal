@@ -83,31 +83,21 @@ export async function POST(req: Request) {
       );
     }
 
-    const sessionUser = {
-      id: demoUser.id,
-      userCode: demoUser.userCode,
-      name: demoUser.name,
-      email: demoUser.email,
-      phone: demoUser.phone,
-      role: demoUser.role,
-      status: demoUser.status,
-      walletBalance: demoUser.walletBalance,
-      allowedTabs: demoUser.allowedTabs,
-      enabledServices: demoUser.enabledServices,
-      twoFactorEnabled: demoUser.twoFactorEnabled,
-      twoFactorExempt: demoUser.twoFactorExempt,
-    };
-
-    const token = createMobileToken(sessionUser as any);
-    const grant = createSessionGrant(demoUser.id);
-
+    // Demo mode routes every user through the standard 2FA screen. There is no
+    // database to hold a per-user TOTP secret, so /api/auth/2fa/verify-session
+    // accepts any valid demo code (see verifyDemo2FACode) and issues the grant.
+    const tempToken = createTempToken(demoUser.id);
     return NextResponse.json({
       ok: true,
-      needs2FA: false,
-      needsSetup: true,
-      token,
-      grant,
-      user: sessionUser,
+      needs2FA: true,
+      needsSetup: false,
+      tempToken,
+      user: {
+        id: demoUser.id,
+        name: demoUser.name,
+        email: demoUser.email,
+        role: demoUser.role,
+      },
     });
   }
 

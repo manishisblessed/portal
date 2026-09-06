@@ -12,6 +12,7 @@ import {
 import { checkRateLimit, RATE_LIMITS } from "@/lib/security/rateLimit";
 import { clientIp } from "@/lib/security/audit";
 import { getLoginBlock } from "@/lib/security/accountGate";
+import { isDemoMode, findDemoUserById, verifyDemo2FACode } from "@/lib/demo-accounts";
 
 const Body = z.object({
   tempToken: z.string().min(10),
@@ -56,6 +57,49 @@ export async function POST(req: Request) {
 
   // Check attempt count (stored in DB for tamper-proof tracking)
   const userId = tokenPayload.sub;
+
+  // ── Demo mode: no DB, no per-user TOTP secret. Accept the demo code and
+  // issue a full mobile session token for the in-memory user. ──
+  if (isDemoMode()) {
+    const demoUser = findDemoUserById(userId);
+    if (!demoUser) {
+      return NextResponse.json({ error: "Invalid session" }, { status: 401 });
+    }
+
+    const loginBlock = getLoginBlock(demoUser.status);
+    if (loginBlock) {
+      return NextResponse.json(
+        { error: loginBlock.error, code: loginBlock.code },
+        { status: 403 }
+      );
+    }
+
+    if (!verifyDemo2FACode(code, type)) {
+      return NextResponse.json({ error: "Invalid code." }, { status: 401 });
+    }
+
+    const sessionUser = {
+      id: demoUser.id,
+      userCode: demoUser.userCode,
+      name: demoUser.name,
+      email: demoUser.email,
+      phone: demoUser.phone,
+      role: demoUser.role,
+      status: demoUser.status,
+      walletBalance: demoUser.walletBalance,
+      allowedTabs: demoUser.allowedTabs,
+      enabledServices: demoUser.enabledServices,
+      twoFactorEnabled: true,
+      twoFactorExempt: demoUser.twoFactorExempt,
+    };
+
+    return NextResponse.json({
+      ok: true,
+      token: createMobileToken(sessionUser as never),
+      user: sessionUser,
+    });
+  }
+
   const user = await prisma.user.findUnique({
     where: { id: userId },
     select: {

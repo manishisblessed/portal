@@ -2,6 +2,7 @@ import { TOTP, Secret } from "otpauth";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
 import { encrypt, decrypt } from "./crypto";
+import { isDemoMode, authSecret } from "./demo-accounts";
 
 const APP_NAME = "ShahWorks";
 const TOTP_DIGITS = 6;
@@ -86,8 +87,11 @@ export async function verifyBackupCode(
 
 function tempTokenSecret(): string {
   const s = process.env.JWT_SECRET ?? process.env.NEXTAUTH_SECRET;
-  if (!s) throw new Error("[2FA] JWT_SECRET or NEXTAUTH_SECRET must be set");
-  return s;
+  if (s) return s;
+  // In demo mode fall back to the stable built-in secret so the 2FA challenge
+  // token can be signed even when no auth secret is configured on the host.
+  if (isDemoMode()) return authSecret();
+  throw new Error("[2FA] JWT_SECRET or NEXTAUTH_SECRET must be set");
 }
 
 function base64url(buf: Buffer): string {

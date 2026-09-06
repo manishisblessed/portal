@@ -12,6 +12,7 @@ import {
 import { checkRateLimit, RATE_LIMITS } from "@/lib/security/rateLimit";
 import { clientIp } from "@/lib/security/audit";
 import { getLoginBlock } from "@/lib/security/accountGate";
+import { isDemoMode, findDemoUserById, verifyDemo2FACode } from "@/lib/demo-accounts";
 
 const Body = z.object({
   tempToken: z.string().min(10),
@@ -48,6 +49,31 @@ export async function POST(req: Request) {
     }
 
     const userId = tokenPayload.sub;
+
+    // ── Demo mode: no DB, no per-user TOTP secret. Accept the demo code and
+    // issue a session grant for the in-memory user. ──
+    if (isDemoMode()) {
+      const demoUser = findDemoUserById(userId);
+      if (!demoUser) {
+        return NextResponse.json({ error: "Invalid session" }, { status: 401 });
+      }
+
+      const loginBlock = getLoginBlock(demoUser.status);
+      if (loginBlock) {
+        return NextResponse.json(
+          { error: loginBlock.error, code: loginBlock.code },
+          { status: 403 }
+        );
+      }
+
+      if (!verifyDemo2FACode(code, type)) {
+        return NextResponse.json({ error: "Invalid code." }, { status: 401 });
+      }
+
+      const grant = createSessionGrant(demoUser.id);
+      return NextResponse.json({ ok: true, grant });
+    }
+
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
