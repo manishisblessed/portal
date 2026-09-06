@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import { prisma } from "../db";
+import { isDemoMode } from "../demo-accounts";
 
 /**
  * Fixed-window rate limiter backed by Postgres so the limit is shared across
@@ -65,6 +66,20 @@ export async function checkRateLimit(
   const bucketKey = `${key}:${bucket}`;
   const windowStart = new Date(bucket * windowMs);
   const resetAt = new Date((bucket + 1) * windowMs);
+
+  // Demo mode has no database to back the counter — allow every request so the
+  // login/2FA flow works without a DB. Rate limiting resumes once the backend
+  // (DATABASE_URL) is connected.
+  if (isDemoMode()) {
+    return {
+      allowed: true,
+      count: 1,
+      limit: opts.limit,
+      remaining: opts.limit,
+      resetAt,
+      retryAfterSec: 0,
+    };
+  }
 
   const rows = await prisma.$queryRaw<{ count: number }[]>`
     INSERT INTO "RateLimit" ("id", "key", "count", "windowStart", "expiresAt")
