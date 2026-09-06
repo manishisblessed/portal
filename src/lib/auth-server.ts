@@ -4,7 +4,7 @@ import { getServerSession as _getServerSession } from "next-auth";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { headers } from "next/headers";
-import { findDemoUserById, isDemoMode } from "./demo-accounts";
+import { findDemoUserById, isDemoMode, authSecret } from "./demo-accounts";
 import { isLoginAllowed } from "./security/accountGate";
 
 export type SessionUser = {
@@ -39,10 +39,10 @@ declare module "next-auth/jwt" {
 }
 
 export const authOptions: NextAuthOptions = {
-  // Explicit secret so a misconfigured runtime fails loudly at startup rather
-  // than 500-ing every /api/auth/* request with a cryptic "server configuration"
-  // error. NextAuth requires this in production.
-  secret: process.env.NEXTAUTH_SECRET,
+  // Secret used to sign the session JWT. Falls back to a built-in demo secret
+  // in demo mode so a database-free deployment doesn't 500 every /api/auth/*
+  // request with "problem with the server configuration".
+  secret: authSecret(),
   // Opt-in only (set NEXTAUTH_DEBUG=true) — always-on dev debug spams the
   // console with [next-auth][warn][DEBUG_ENABLED] on every compile.
   debug: process.env.NEXTAUTH_DEBUG === "true",
@@ -68,7 +68,7 @@ export const authOptions: NextAuthOptions = {
         if (parts.length !== 2) return null;
 
         const [payloadB64, sig] = parts;
-        const secret = process.env.NEXTAUTH_SECRET ?? "";
+        const secret = authSecret();
         const payload = Buffer.from(payloadB64, "base64").toString();
         const expectedSig = crypto.createHmac("sha256", secret).update(payload).digest("hex");
 
@@ -345,7 +345,7 @@ export async function getServerAuth() {
 // ---------------------------------------------------------------------------
 
 function jwtSecret() {
-  const s = process.env.JWT_SECRET ?? process.env.NEXTAUTH_SECRET;
+  const s = process.env.JWT_SECRET ?? process.env.NEXTAUTH_SECRET ?? (isDemoMode() ? authSecret() : undefined);
   if (!s) throw new Error("[auth] JWT_SECRET or NEXTAUTH_SECRET must be set");
   return s;
 }
@@ -360,7 +360,7 @@ function base64url(buf: Buffer): string {
  * the frontend can establish a session without a second password check.
  */
 export function createSessionGrant(userId: string): string {
-  const secret = process.env.NEXTAUTH_SECRET ?? "";
+  const secret = authSecret();
   const exp = Math.floor(Date.now() / 1000) + 30;
   const payload = `${userId}:${exp}`;
   const sig = crypto.createHmac("sha256", secret).update(payload).digest("hex");

@@ -168,6 +168,26 @@ export function findDemoUserById(id: string): DemoUser | undefined {
   return DEMO_USERS.find((u) => u.id === id);
 }
 
+/**
+ * Demo mode is active when there is no database configured, or when it is
+ * explicitly forced with DEMO_MODE=true / DEMO_MODE=1. Forcing lets a server
+ * that still has a leftover DATABASE_URL run on the in-memory demo accounts.
+ */
 export function isDemoMode(): boolean {
+  const flag = (process.env.DEMO_MODE ?? "").toLowerCase();
+  if (flag === "true" || flag === "1") return true;
+  if (flag === "false" || flag === "0") return false;
   return !process.env.DATABASE_URL;
+}
+
+/**
+ * Auth secret used for NextAuth and the HMAC session grants. In demo mode we
+ * fall back to a stable built-in secret so a demo deployment works even when
+ * NEXTAUTH_SECRET was never configured on the host (otherwise NextAuth 500s
+ * every /api/auth/* request with "problem with the server configuration").
+ */
+export const DEMO_AUTH_SECRET = "shahworks-demo-secret-please-change-in-production";
+
+export function authSecret(): string {
+  return process.env.NEXTAUTH_SECRET || (isDemoMode() ? DEMO_AUTH_SECRET : "");
 }
