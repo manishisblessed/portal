@@ -54,7 +54,7 @@ const panelFigures = [
   { value: "99.97%", label: "Uptime" },
 ];
 
-/** Dark brand panel with the animated Paybridgex bridge — shared by both login steps. */
+/** Dark brand panel with the animated ShahWorks bridge — shared by both login steps. */
 function BrandPanel({
   eyebrow,
   title,
@@ -353,7 +353,7 @@ function LoginForm({ location }: { location: LocationData }) {
           </div>
 
           <p className="mt-6 text-center text-sm text-ink-500">
-            New to Paybridgex?{" "}
+            New to ShahWorks?{" "}
             <Link href="/register" className="font-semibold text-brand-700 hover:underline">
               Request to join
             </Link>

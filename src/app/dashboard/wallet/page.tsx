@@ -229,7 +229,7 @@ export default function WalletPage() {
       <Reveal distance={14} duration={0.4}>
         <ServicePageHeader
           icon={Wallet}
-          title="Paybridgex Wallet"
+          title="ShahWorks Wallet"
           description="Top-up your wallet instantly via UPI, or view your balance history."
         />
       </Reveal>

@@ -344,7 +344,7 @@ export function ReportView({ type }: { type: ReportType }) {
           <>
             <ReportActions
               filename={`${type}-report`}
-              title={`Paybridgex · ${config.title}`}
+              title={`ShahWorks · ${config.title}`}
               subtitle={
                 f.dateRange && from && to ? `${toDateStr(from)} – ${toDateStr(to)}` : "All records"
               }

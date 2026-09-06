@@ -18,7 +18,7 @@ const heroFigures = [
 ];
 
 /**
- * Landing hero — dark, centred, built around the Paybridgex "bridge" identity.
+ * Landing hero — dark, centred, built around the ShahWorks "bridge" identity.
  * A live SVG shows payments flowing from the shop, across the bridge, to the bank.
  */
 export function BridgeHero() {
@@ -46,7 +46,7 @@ export function BridgeHero() {
         </h1>
 
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/70 animate-fade-up [animation-delay:160ms] md:text-lg">
-          Paybridgex is the bridge between your counter and India&apos;s payment
+          ShahWorks is the bridge between your counter and India&apos;s payment
           rails. Collect on UPI, cards, AePS and BBPS — and watch the money land
           in your bank, instantly.
         </p>
@@ -91,7 +91,7 @@ export function BridgeHero() {
         })}
 
         <div className="relative mx-auto max-w-4xl">
-          <svg viewBox="0 0 800 240" fill="none" className="w-full" role="img" aria-label="Payments flow from the shop, across the Paybridgex bridge, to the bank">
+            <svg viewBox="0 0 800 240" fill="none" className="w-full" role="img" aria-label="Payments flow from the shop, across the ShahWorks bridge, to the bank">
             <defs>
               <linearGradient id="bh-arc" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
                 <stop offset="0" stopColor="#578bfc" />
@@ -133,7 +133,7 @@ export function BridgeHero() {
               <span className="grid h-14 w-14 place-items-center rounded-2xl border border-accent-400/40 bg-[#0e1740] shadow-[0_0_50px_rgba(52,211,153,0.35)] md:h-16 md:w-16">
                 <LogoMark size={44} variant="light" />
               </span>
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-accent-300">Paybridgex</span>
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-accent-300">ShahWorks</span>
             </div>
             <div className="flex flex-col items-center gap-2">
               <span className="grid h-12 w-12 place-items-center rounded-2xl border border-white/15 bg-white/10 backdrop-blur-sm md:h-14 md:w-14">

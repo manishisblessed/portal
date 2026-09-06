@@ -1,10 +1,10 @@
 module.exports = {
   apps: [
     {
-      name: "paybridgex",
+      name: "shahworks",
       script: "node_modules/.bin/next",
       args: "start -p 3000",
-      cwd: "/home/ubuntu/paybridgex",
+      cwd: "/home/ubuntu/shahworks",
       instances: "max",
       exec_mode: "cluster",
       env: {
@@ -13,8 +13,8 @@ module.exports = {
       },
       max_memory_restart: "512M",
       log_date_format: "YYYY-MM-DD HH:mm:ss Z",
-      error_file: "/home/ubuntu/logs/paybridgex-error.log",
-      out_file: "/home/ubuntu/logs/paybridgex-out.log",
+      error_file: "/home/ubuntu/logs/shahworks-error.log",
+      out_file: "/home/ubuntu/logs/shahworks-out.log",
       merge_logs: true,
       autorestart: true,
       watch: false,
@@ -25,10 +25,10 @@ module.exports = {
       // Background queue worker (pg-boss): payout initiation + reconciliation.
       // Single instance (fork) — pg-boss handles concurrency internally and a
       // single scheduler avoids duplicate cron fan-out.
-      name: "paybridgex-worker",
+      name: "shahworks-worker",
       script: "node_modules/.bin/tsx",
       args: "scripts/worker.ts",
-      cwd: "/home/ubuntu/paybridgex",
+      cwd: "/home/ubuntu/shahworks",
       instances: 1,
       exec_mode: "fork",
       env: {
@@ -36,8 +36,8 @@ module.exports = {
       },
       max_memory_restart: "384M",
       log_date_format: "YYYY-MM-DD HH:mm:ss Z",
-      error_file: "/home/ubuntu/logs/paybridgex-worker-error.log",
-      out_file: "/home/ubuntu/logs/paybridgex-worker-out.log",
+      error_file: "/home/ubuntu/logs/shahworks-worker-error.log",
+      out_file: "/home/ubuntu/logs/shahworks-worker-out.log",
       merge_logs: true,
       autorestart: true,
       watch: false,

@@ -1095,7 +1095,7 @@ function TransferReviewPage({ transfer, onBack }: { transfer: TransferRequest; o
     if (!blob) return null;
     const fd = new FormData();
     fd.append("file", blob, "transfer-signature.png");
-    fd.append("folder", "paybridgex/declarations/transfer");
+    fd.append("folder", "shahworks/declarations/transfer");
     const res = await fetch("/api/upload", { method: "POST", body: fd });
     if (!res.ok) return null;
     const data = await res.json();
@@ -1107,7 +1107,7 @@ function TransferReviewPage({ transfer, onBack }: { transfer: TransferRequest; o
     const blob = await fetch(selfieDataUrl).then((r) => r.blob());
     const fd = new FormData();
     fd.append("file", blob, "transfer-selfie.jpg");
-    fd.append("folder", "paybridgex/declarations/transfer");
+    fd.append("folder", "shahworks/declarations/transfer");
     const res = await fetch("/api/upload", { method: "POST", body: fd });
     if (!res.ok) return null;
     const data = await res.json();

@@ -18,7 +18,7 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Royal Blue — primary brand colour (matches the Paybridgex logo).
+        // Royal Blue — primary brand colour (matches the ShahWorks logo).
         brand: {
           50: "#eef4ff",
           100: "#d9e6ff",
@@ -32,7 +32,7 @@ const config: Config = {
           900: "#192a82",
           950: "#131b4e"
         },
-        // Emerald Green — secondary brand colour (matches the Paybridgex logo).
+        // Emerald Green — secondary brand colour (matches the ShahWorks logo).
         accent: {
           50: "#ecfdf5",
           100: "#d1fae5",

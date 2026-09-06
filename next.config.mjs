@@ -62,8 +62,8 @@ const nextConfig = {
 };
 
 export default withSentryConfig(nextConfig, {
-  // TODO(paybridgex): create a Sentry org for K.A. Paybridgex Solution and update this slug.
-  org: "ka-paybridgex-solution",
+  // TODO(shahworks): create a Sentry org for Shah Works and update this slug.
+  org: "shah-works",
   project: "javascript-nextjs",
 
   // Build-time secret used to upload source maps so production stack traces are

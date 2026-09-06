@@ -149,7 +149,7 @@ export default function JoinPage() {
           </div>
         ) : (
           <>
-            <h1 className="heading-md">Join Paybridgex</h1>
+            <h1 className="heading-md">Join ShahWorks</h1>
             <p className="mt-2 text-sm text-ink-500">
               Fill in your details — our support team will reach out and complete
               your onboarding. Already a member?{" "}
@@ -274,7 +274,7 @@ export default function JoinPage() {
                     required
                     className="mt-0.5 h-4 w-4 rounded border-ink-300 text-brand-600 focus:ring-brand-500"
                   />
-                  I agree to be contacted by Paybridgex and accept the{" "}
+                  I agree to be contacted by ShahWorks and accept the{" "}
                   <Link href="/legal/terms" className="font-semibold text-brand-700">
                     Terms
                   </Link>{" "}

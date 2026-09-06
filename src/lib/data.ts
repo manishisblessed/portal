@@ -23,45 +23,39 @@ import {
 } from "lucide-react";
 
 export const company = {
-  legalName: "K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED",
-  brand: "Paybridgex",
-  tradeName: "kapaybridgex",
+  legalName: "SHAH WORKS PRIVATE LIMITED",
+  brand: "ShahWorks",
+  tradeName: "shahworks",
   tagline: "Smart Payments. Trusted Solutions.",
-  domain: "paybridgex.in",
-  email: "info@paybridgex.in",
-  supportEmail: "support@paybridgex.in",
-  legalEmail: "legal@paybridgex.in",
-  grievanceEmail: "grievance@paybridgex.in",
-  nodalEmail: "nodal@paybridgex.in",
-  // TODO(paybridgex): replace placeholder phone with the official contact number.
-  phone: "XXXXXXXXXX",
-  cin: "U82910GJ2026OPC181144",
+  domain: "shahworks.com",
+  email: "info@shahworks.com",
+  supportEmail: "support@shahworks.com",
+  legalEmail: "legal@shahworks.com",
+  grievanceEmail: "grievance@shahworks.com",
+  nodalEmail: "nodal@shahworks.com",
+  phone: "9999999999",
+  cin: "U82910DL2026PTC000000",
   incorporated: "2026",
-  jurisdiction: "Ahmedabad, Gujarat",
-  address:
-    "E-340, SAFAL 11, Opp. Namaskar Circle, Shahibag, Ahmedabad City, Ahmedabad, Gujarat - 380004",
-  shortAddress: "SAFAL 11, Shahibag, Ahmedabad"
+  jurisdiction: "New Delhi",
+  address: "New Delhi-110078",
+  shortAddress: "New Delhi-110078"
 };
 
-// Mandatory under IT Rules 2021 (Intermediary Guidelines) & RBI Master Direction
-// on Customer Service in Banks, 2024.
-// TODO(paybridgex): replace placeholder officer names once formally appointed.
 export const grievanceOfficer = {
   name: "[Grievance Officer — to be notified]",
   designation: "Grievance Redressal Officer",
-  email: "grievance@paybridgex.in",
-  phone: "+91 XXXXXXXXXX",
+  email: "grievance@shahworks.com",
+  phone: "+91 9999999999",
   hours: "Monday to Saturday, 10:00 AM – 6:00 PM IST",
-  address:
-    "E-340, SAFAL 11, Opp. Namaskar Circle, Shahibag, Ahmedabad City, Ahmedabad, Gujarat – 380004",
+  address: "New Delhi-110078",
   responseSla: "Acknowledgement within 24 hours · Resolution within 15 working days"
 };
 
 export const nodalOfficer = {
   name: "[Nodal Officer — to be notified]",
   designation: "Principal Nodal Officer",
-  email: "nodal@paybridgex.in",
-  phone: "+91 XXXXXXXXXX"
+  email: "nodal@shahworks.com",
+  phone: "+91 9999999999"
 };
 
 export type ServiceItem = {
@@ -133,7 +127,7 @@ export const services: ServiceItem[] = [
   {
     slug: "wallet",
     title: "Wallet Pay",
-    description: "Top-up your Paybridgex wallet and pay anywhere instantly.",
+    description: "Top-up your ShahWorks wallet and pay anywhere instantly.",
     icon: Wallet,
     href: "/dashboard/wallet",
     category: "banking"
@@ -257,11 +251,11 @@ export type FaqItem = { q: string; a: string };
 
 export const faqs: FaqItem[] = [
   {
-    q: "What is Paybridgex?",
-    a: "Paybridgex (operated by K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED, Ahmedabad) is a payments and digital-services platform built around one promise — Smart Payments. Trusted Solutions. Retailers, distributors and merchants get money transfer, AePS, QR collections, recharges, bill payments and travel bookings from one secure dashboard."
+    q: "What is ShahWorks?",
+    a: "ShahWorks (operated by SHAH WORKS PRIVATE LIMITED, New Delhi) is a payments and digital-services platform built around one promise — Smart Payments. Trusted Solutions. Retailers, distributors and merchants get money transfer, AePS, QR collections, recharges, bill payments and travel bookings from one secure dashboard."
   },
   {
-    q: "Is my money and data safe on Paybridgex?",
+    q: "Is my money and data safe on ShahWorks?",
     a: "Absolutely. Every session runs over bank-grade 256-bit TLS encryption, all money movement is settled through RBI-licensed partner banks, and two-factor authentication protects every login and high-value transaction. We never sell or rent your data."
   },
   {
@@ -269,12 +263,12 @@ export const faqs: FaqItem[] = [
     a: "Electricity, water, piped gas & LPG, broadband, DTH, postpaid mobile, landline, credit-card bills, education fees, insurance premiums, FASTag and municipal taxes — routed across 1,200+ live BBPS billers."
   },
   {
-    q: "How do I join Paybridgex as a retail partner?",
+    q: "How do I join ShahWorks as a retail partner?",
     a: "Register with your PAN, Aadhaar and shop details, finish paperless KYC in a few minutes, and start earning on every transaction from day one. There is no joining fee."
   },
   {
     q: "When do I receive my commissions?",
-    a: "Commissions land in your Paybridgex wallet the moment a transaction succeeds. Withdraw to your bank account any time, 24x7, with instant IMPS settlement."
+    a: "Commissions land in your ShahWorks wallet the moment a transaction succeeds. Withdraw to your bank account any time, 24x7, with instant IMPS settlement."
   },
   {
     q: "Are there any hidden charges?",
@@ -294,7 +288,7 @@ export const testimonials: Testimonial[] = [
     name: "Nilesh Chauhan",
     role: "Owner, Chauhan Digital Seva",
     quote:
-      "Paybridgex settles faster than any platform I have worked with. Payments clear instantly, rates are fair, and their support actually picks up the phone.",
+      "ShahWorks settles faster than any platform I have worked with. Payments clear instantly, rates are fair, and their support actually picks up the phone.",
     rating: 5
   },
   {
@@ -308,7 +302,7 @@ export const testimonials: Testimonial[] = [
     name: "Hetal Trivedi",
     role: "Owner, Trivedi Enterprise",
     quote:
-      "My counter earnings grew steadily within the first quarter on Paybridgex. Onboarding was completely paperless and painless.",
+      "My counter earnings grew steadily within the first quarter on ShahWorks. Onboarding was completely paperless and painless.",
     rating: 5
   },
   {
@@ -540,7 +534,7 @@ export const indiaMissions: IndiaMission[] = [
     code: "04",
     title: "Aatmanirbhar Bharat",
     body:
-      "100% Made-in-India fintech stack. Data resident on Indian soil, engineered in Ahmedabad, processed in India only.",
+      "100% Made-in-India fintech stack. Data resident on Indian soil, engineered in New Delhi, processed in India only.",
     stat: "🇮🇳",
     statLabel: "Proudly Made in India"
   }
@@ -698,7 +692,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
     title: "Privacy Policy",
     eyebrow: "Legal · Privacy",
     description:
-      "How K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED collects, uses, stores and protects your personal data — drafted as per the Digital Personal Data Protection Act, 2023, the Information Technology Act, 2000 and the SPDI Rules, 2011.",
+      "How SHAH WORKS PRIVATE LIMITED collects, uses, stores and protects your personal data — drafted as per the Digital Personal Data Protection Act, 2023, the Information Technology Act, 2000 and the SPDI Rules, 2011.",
     lastUpdated: "01 August 2026",
     governedBy: [
       "Digital Personal Data Protection Act, 2023",
@@ -711,7 +705,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
         id: "introduction",
         heading: "1. Introduction",
         body: [
-          "This Privacy Policy (\"Policy\") governs the processing of personal data by K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED (CIN: U82910GJ2026OPC181144), a company incorporated under the Companies Act, 2013 and having its registered office at E-340, SAFAL 11, Opp. Namaskar Circle, Shahibag, Ahmedabad City, Ahmedabad, Gujarat – 380004 (\"Paybridgex\", \"Company\", \"We\", \"Us\"), through its website www.paybridgex.in, mobile applications and APIs (collectively, the \"Platform\").",
+          "This Privacy Policy (\"Policy\") governs the processing of personal data by SHAH WORKS PRIVATE LIMITED (CIN: U82910DL2026PTC000000), a company incorporated under the Companies Act, 2013 and having its registered office at New Delhi-110078 (\"ShahWorks\", \"Company\", \"We\", \"Us\"), through its website www.shahworks.com, mobile applications and APIs (collectively, the \"Platform\").",
           "By accessing or using the Platform, you (the \"Data Principal\") consent to the practices described in this Policy. If you do not agree, please do not use the Platform."
         ]
       },
@@ -789,7 +783,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
               "Lodge a complaint with the Data Protection Board of India."
             ]
           },
-          "To exercise any of the above rights, please write to our Grievance Officer at grievance@paybridgex.in. We will respond within fifteen (15) working days."
+          "To exercise any of the above rights, please write to our Grievance Officer at grievance@shahworks.com. We will respond within fifteen (15) working days."
         ]
       },
       {
@@ -834,7 +828,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
     title: "Terms & Conditions",
     eyebrow: "Legal · Terms of Use",
     description:
-      "The contract between you and K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED for use of the Paybridgex Platform, drawn up under the Indian Contract Act, 1872 and the Information Technology Act, 2000.",
+      "The contract between you and SHAH WORKS PRIVATE LIMITED for use of the ShahWorks Platform, drawn up under the Indian Contract Act, 1872 and the Information Technology Act, 2000.",
     lastUpdated: "01 August 2026",
     governedBy: [
       "Indian Contract Act, 1872",
@@ -847,7 +841,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
         id: "acceptance",
         heading: "1. Acceptance of Terms",
         body: [
-          "These Terms & Conditions (\"Terms\") form a binding electronic record under Section 10A of the Information Technology Act, 2000 between you (\"User\", \"Retailer\", \"Distributor\", \"Customer\") and K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED (\"Paybridgex\", \"Company\"). By registering, accessing or using the Platform you accept these Terms in full."
+          "These Terms & Conditions (\"Terms\") form a binding electronic record under Section 10A of the Information Technology Act, 2000 between you (\"User\", \"Retailer\", \"Distributor\", \"Customer\") and SHAH WORKS PRIVATE LIMITED (\"ShahWorks\", \"Company\"). By registering, accessing or using the Platform you accept these Terms in full."
         ]
       },
       {
@@ -861,7 +855,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
         id: "services",
         heading: "3. Description of services",
         body: [
-          "Paybridgex is a technology aggregator that facilitates digital financial services including, but not limited to, AePS, DMT, BBPS, UPI, recharges, travel bookings and PAN application. The underlying banking / settlement services are provided by RBI-licensed sponsor banks and NPCI rails. Paybridgex does not itself accept deposits or extend credit."
+          "ShahWorks is a technology aggregator that facilitates digital financial services including, but not limited to, AePS, DMT, BBPS, UPI, recharges, travel bookings and PAN application. The underlying banking / settlement services are provided by RBI-licensed sponsor banks and NPCI rails. ShahWorks does not itself accept deposits or extend credit."
         ]
       },
       {
@@ -871,7 +865,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
           {
             list: [
               "You shall complete KYC as required under the RBI Master Direction on KYC, 2016 prior to availing transactional services.",
-              "You are responsible for maintaining confidentiality of your login credentials, MPIN, biometric authentication and OTPs. Paybridgex will never ask for these over phone, SMS or e-mail.",
+              "You are responsible for maintaining confidentiality of your login credentials, MPIN, biometric authentication and OTPs. ShahWorks will never ask for these over phone, SMS or e-mail.",
               "Any transaction performed using your credentials shall be deemed to be performed by you.",
               "You shall not share, sublicense or commercially exploit your access in violation of these Terms."
             ]
@@ -905,35 +899,35 @@ export const legalDocuments: Record<string, LegalDocument> = {
         id: "intellectual",
         heading: "7. Intellectual property",
         body: [
-          "All trademarks, logos, software, designs, content and brand elements on the Platform are the exclusive property of K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED or its licensors, and are protected under the Copyright Act, 1957 and the Trade Marks Act, 1999. No part of the Platform may be reproduced without prior written consent."
+          "All trademarks, logos, software, designs, content and brand elements on the Platform are the exclusive property of SHAH WORKS PRIVATE LIMITED or its licensors, and are protected under the Copyright Act, 1957 and the Trade Marks Act, 1999. No part of the Platform may be reproduced without prior written consent."
         ]
       },
       {
         id: "liability",
         heading: "8. Limitation of liability",
         body: [
-          "To the maximum extent permitted by law, the aggregate liability of Paybridgex arising out of or relating to the use of the Platform shall not exceed the aggregate commission earned by, or fees paid by, the User in the three (3) months preceding the event giving rise to the claim. Paybridgex shall not be liable for indirect, incidental, consequential, punitive or special damages."
+          "To the maximum extent permitted by law, the aggregate liability of ShahWorks arising out of or relating to the use of the Platform shall not exceed the aggregate commission earned by, or fees paid by, the User in the three (3) months preceding the event giving rise to the claim. ShahWorks shall not be liable for indirect, incidental, consequential, punitive or special damages."
         ]
       },
       {
         id: "force",
         heading: "9. Force majeure",
         body: [
-          "Paybridgex shall not be liable for any failure or delay arising out of events beyond its reasonable control, including acts of God, war, pandemics, regulatory action, internet outages, sponsor-bank downtime or NPCI / UIDAI service disruptions."
+          "ShahWorks shall not be liable for any failure or delay arising out of events beyond its reasonable control, including acts of God, war, pandemics, regulatory action, internet outages, sponsor-bank downtime or NPCI / UIDAI service disruptions."
         ]
       },
       {
         id: "termination",
         heading: "10. Suspension & termination",
         body: [
-          "Paybridgex reserves the right to suspend or terminate your account, with or without notice, where it has reasonable grounds to believe that you are in breach of these Terms, applicable law, or any RBI / NPCI / UIDAI direction."
+          "ShahWorks reserves the right to suspend or terminate your account, with or without notice, where it has reasonable grounds to believe that you are in breach of these Terms, applicable law, or any RBI / NPCI / UIDAI direction."
         ]
       },
       {
         id: "law",
         heading: "11. Governing law & dispute resolution",
         body: [
-          "These Terms shall be governed by and construed in accordance with the laws of India. Any dispute, controversy or claim arising out of or in connection with these Terms shall first be attempted to be resolved through good-faith negotiation, failing which through arbitration by a sole arbitrator appointed under the Arbitration & Conciliation Act, 1996. The seat and venue of arbitration shall be Ahmedabad, Gujarat. The courts at Ahmedabad shall have exclusive jurisdiction subject to the arbitration clause."
+          "These Terms shall be governed by and construed in accordance with the laws of India. Any dispute, controversy or claim arising out of or in connection with these Terms shall first be attempted to be resolved through good-faith negotiation, failing which through arbitration by a sole arbitrator appointed under the Arbitration & Conciliation Act, 1996. The seat and venue of arbitration shall be New Delhi. The courts at New Delhi shall have exclusive jurisdiction subject to the arbitration clause."
         ]
       },
       {
@@ -962,7 +956,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
         id: "scope",
         heading: "1. Scope",
         body: [
-          "This Refund Policy applies to all transactions initiated through the Paybridgex Platform — AePS, DMT, BBPS, UPI, recharges, travel bookings and any value-added services. Refunds for products / services delivered by third-party billers (electricity boards, telecom operators, airlines, IRCTC, hotel chains) are governed by the policies of the respective billers, but Paybridgex will assist you with end-to-end follow-up."
+          "This Refund Policy applies to all transactions initiated through the ShahWorks Platform — AePS, DMT, BBPS, UPI, recharges, travel bookings and any value-added services. Refunds for products / services delivered by third-party billers (electricity boards, telecom operators, airlines, IRCTC, hotel chains) are governed by the policies of the respective billers, but ShahWorks will assist you with end-to-end follow-up."
         ]
       },
       {
@@ -991,8 +985,8 @@ export const legalDocuments: Record<string, LegalDocument> = {
         body: [
           {
             list: [
-              "Log in to your Paybridgex dashboard → Transactions → Raise Dispute.",
-              "Or e-mail support@paybridgex.in with the transaction reference number (RRN), date, amount and a short description.",
+              "Log in to your ShahWorks dashboard → Transactions → Raise Dispute.",
+              "Or e-mail support@shahworks.com with the transaction reference number (RRN), date, amount and a short description.",
               "For UPI disputes you may also raise a request directly with the issuer bank, the NPCI UDIR portal or the RBI Digital Ombudsman."
             ]
           }
@@ -1025,8 +1019,8 @@ export const legalDocuments: Record<string, LegalDocument> = {
           "If you are not satisfied with the resolution provided at L1 support within 7 days, escalate to:",
           {
             list: [
-              "L2 — Grievance Officer, grievance@paybridgex.in (response within 15 working days)",
-              "L3 — Principal Nodal Officer, nodal@paybridgex.in",
+              "L2 — Grievance Officer, grievance@shahworks.com (response within 15 working days)",
+              "L3 — Principal Nodal Officer, nodal@shahworks.com",
               "L4 — RBI Integrated Ombudsman Scheme, 2021 at cms.rbi.org.in or NPCI Digital Ombudsman"
             ]
           }
@@ -1039,7 +1033,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
     title: "Charges & Fees",
     eyebrow: "Legal · Pricing transparency",
     description:
-      "All convenience fees, commissions and GST that may apply to transactions on the Paybridgex Platform — published in line with RBI's directions on display of charges.",
+      "All convenience fees, commissions and GST that may apply to transactions on the ShahWorks Platform — published in line with RBI's directions on display of charges.",
     lastUpdated: "01 August 2026",
     governedBy: [
       "RBI Master Direction on Issuance & Operation of PPIs, 2021",
@@ -1121,9 +1115,9 @@ export const legalDocuments: Record<string, LegalDocument> = {
           {
             list: [
               "In-app — Help → Raise a Ticket",
-              "E-mail — support@paybridgex.in",
-              "WhatsApp / Phone — +91 XXXXXXXXXX (10 AM – 6 PM IST, Mon–Sat)",
-              "Letter — Customer Care, K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED, E-340, SAFAL 11, Opp. Namaskar Circle, Shahibag, Ahmedabad – 380004"
+              "E-mail — support@shahworks.com",
+              "WhatsApp / Phone — +91 9999999999 (10 AM – 6 PM IST, Mon–Sat)",
+              "Letter — Customer Care, SHAH WORKS PRIVATE LIMITED, New Delhi-110078"
             ]
           }
         ]
@@ -1136,9 +1130,9 @@ export const legalDocuments: Record<string, LegalDocument> = {
             table: {
               headers: ["Level", "Officer", "Channel", "TAT"],
               rows: [
-                ["Level 1", "Customer Care Executive", "support@paybridgex.in", "7 working days"],
-                ["Level 2", "Grievance Officer", "grievance@paybridgex.in · +91 XXXXXXXXXX", "15 working days"],
-                ["Level 3", "Principal Nodal Officer", "nodal@paybridgex.in · +91 XXXXXXXXXX", "30 days"],
+                ["Level 1", "Customer Care Executive", "support@shahworks.com", "7 working days"],
+                ["Level 2", "Grievance Officer", "grievance@shahworks.com · +91 9999999999", "15 working days"],
+                ["Level 3", "Principal Nodal Officer", "nodal@shahworks.com · +91 9999999999", "30 days"],
                 ["Level 4", "RBI Integrated Ombudsman", "cms.rbi.org.in · 14448 (toll-free)", "As per scheme"]
               ]
             }
@@ -1320,11 +1314,11 @@ export type AuditEvent = {
 };
 
 export const auditEvents: AuditEvent[] = [
-  { id: "AU-94221", actor: "admin@paybridgex.in", action: "Approved KYC", target: "Vivek Joshi (KYC-004)", ip: "10.18.4.21", ts: "Apr 19, 10:22 AM", severity: "info" },
-  { id: "AU-94220", actor: "neha.k@paybridgex.in", action: "Override commission", target: "DMT IMPS · PBXD2017", ip: "49.207.211.4", ts: "Apr 19, 09:51 AM", severity: "warn" },
-  { id: "AU-94219", actor: "admin@paybridgex.in", action: "Suspended retailer", target: "PBXR3217 (Patil Enterprises)", ip: "10.18.4.21", ts: "Apr 19, 09:14 AM", severity: "danger" },
+  { id: "AU-94221", actor: "admin@shahworks.com", action: "Approved KYC", target: "Vivek Joshi (KYC-004)", ip: "10.18.4.21", ts: "Apr 19, 10:22 AM", severity: "info" },
+  { id: "AU-94220", actor: "neha.k@shahworks.com", action: "Override commission", target: "DMT IMPS · PBXD2017", ip: "49.207.211.4", ts: "Apr 19, 09:51 AM", severity: "warn" },
+  { id: "AU-94219", actor: "admin@shahworks.com", action: "Suspended retailer", target: "PBXR3217 (Patil Enterprises)", ip: "10.18.4.21", ts: "Apr 19, 09:14 AM", severity: "danger" },
   { id: "AU-94218", actor: "system", action: "Biller routing failover", target: "DTH · Tata Play → fallback", ip: "n/a", ts: "Apr 19, 08:42 AM", severity: "warn" },
-  { id: "AU-94217", actor: "rohit.v@paybridgex.in", action: "Approved fund request", target: "FR-9003 · ₹15,000", ip: "182.65.21.99", ts: "Apr 18, 06:30 PM", severity: "info" },
+  { id: "AU-94217", actor: "rohit.v@shahworks.com", action: "Approved fund request", target: "FR-9003 · ₹15,000", ip: "182.65.21.99", ts: "Apr 18, 06:30 PM", severity: "info" },
   { id: "AU-94216", actor: "system", action: "Settlement run", target: "T+1 · ₹8.42 Cr · 12,481 txns", ip: "n/a", ts: "Apr 18, 11:05 PM", severity: "info" }
 ];
 
@@ -1561,11 +1555,11 @@ export type QrCodeItem = {
 };
 
 export const qrCodes: QrCodeItem[] = [
-  { id: "QR-5001", type: "Static", label: "Shop Counter 1", vpa: "paybridgex.desai@icici", created: "May 02, 2026", payments: 1841, collected: 1284500, status: "Active" },
-  { id: "QR-5002", type: "Static", label: "Shop Counter 2", vpa: "paybridgex.desai2@icici", created: "May 02, 2026", payments: 644, collected: 412800, status: "Active" },
-  { id: "QR-5014", type: "Dynamic", label: "Invoice #4421", vpa: "paybridgex.desai@icici", amount: 12400, created: "Jun 12, 2026", payments: 1, collected: 12400, status: "Expired" },
-  { id: "QR-5015", type: "Dynamic", label: "Invoice #4427", vpa: "paybridgex.desai@icici", amount: 8600, created: "Jun 12, 2026", payments: 0, collected: 0, status: "Active" },
-  { id: "QR-5009", type: "Static", label: "Delivery Van", vpa: "paybridgex.desai3@icici", created: "May 22, 2026", payments: 102, collected: 89200, status: "Disabled" }
+  { id: "QR-5001", type: "Static", label: "Shop Counter 1", vpa: "shahworks.desai@icici", created: "May 02, 2026", payments: 1841, collected: 1284500, status: "Active" },
+  { id: "QR-5002", type: "Static", label: "Shop Counter 2", vpa: "shahworks.desai2@icici", created: "May 02, 2026", payments: 644, collected: 412800, status: "Active" },
+  { id: "QR-5014", type: "Dynamic", label: "Invoice #4421", vpa: "shahworks.desai@icici", amount: 12400, created: "Jun 12, 2026", payments: 1, collected: 12400, status: "Expired" },
+  { id: "QR-5015", type: "Dynamic", label: "Invoice #4427", vpa: "shahworks.desai@icici", amount: 8600, created: "Jun 12, 2026", payments: 0, collected: 0, status: "Active" },
+  { id: "QR-5009", type: "Static", label: "Delivery Van", vpa: "shahworks.desai3@icici", created: "May 22, 2026", payments: 102, collected: 89200, status: "Disabled" }
 ];
 
 export type QrPayment = {

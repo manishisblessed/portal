@@ -51,7 +51,7 @@ const reasons = [
   }
 ];
 
-export function WhyPaybridgex() {
+export function WhyShahWorks() {
   return (
     <Section className="bg-white">
       <Container>
@@ -60,7 +60,7 @@ export function WhyPaybridgex() {
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">
               <Reveal>
-                <span className="eyebrow">Why Paybridgex</span>
+                <span className="eyebrow">Why ShahWorks</span>
                 <h2 className="heading-lg mt-4">
                   Trust is a feature.{" "}
                   <span className="gradient-text">We ship it daily.</span>

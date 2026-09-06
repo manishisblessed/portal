@@ -1,6 +1,6 @@
-# Paybridgex — Going to Production
+# ShahWorks — Going to Production
 
-This document covers everything you need to take Paybridgex from the current
+This document covers everything you need to take ShahWorks from the current
 prototype state to a live, money-moving, RBI-friendly product.
 
 ---
@@ -27,10 +27,10 @@ helpers, NextAuth-ready models) is the foundation for everything below.
 
 ### 1.1 Create the project
 1. Sign up at [console.neon.tech](https://console.neon.tech).
-2. Click **New Project** → name it `paybridgex-prod`.
+2. Click **New Project** → name it `shahworks-prod`.
    - Region: `aws-ap-south-1` (Mumbai) — lowest latency from India.
    - Postgres version: 16.
-3. Inside the project create a database named `paybridgex`.
+3. Inside the project create a database named `shahworks`.
 4. Create **two branches**:
    - `main`  → production
    - `dev`   → development / staging (cheap, branched off main)
@@ -38,7 +38,7 @@ helpers, NextAuth-ready models) is the foundation for everything below.
 ### 1.2 Get the connection strings
 On the **Connection Details** panel toggle:
 - **Pooled connection** → copy as `DATABASE_URL`
-  (`...-pooler.aws.neon.tech/paybridgex?sslmode=require`)
+  (`...-pooler.aws.neon.tech/shahworks?sslmode=require`)
 - **Direct connection** → copy as `DIRECT_URL`
   Used only by `prisma migrate`.
 
@@ -83,12 +83,12 @@ inside Vercel Edge / serverless functions without exhausting connections.
 ### 2.1 Create the account
 1. Sign up at [cloudinary.com](https://cloudinary.com).
 2. Settings → **Upload presets** → Add:
-   - `paybridgex_kyc_signed` — Signed, type `private`, max 8 MB, allowed
+   - `shahworks_kyc_signed` — Signed, type `private`, max 8 MB, allowed
      formats `jpg,jpeg,png,pdf,webp`, auto moderation off.
 3. Settings → **Security**:
    - Restricted media types: `pdf`.
    - **Strict transformations**: ON.
-   - **Allowed fetch domains**: `app.paybridgex.in`, `paybridgex.in`.
+   - **Allowed fetch domains**: `app.shahworks.com`, `shahworks.com`.
 4. Settings → **API Keys** → copy `cloud_name`, `api_key`, `api_secret` into
    `.env.local`.
 
@@ -224,7 +224,7 @@ vercel env pull .env.local           # pulls non-secrets
 vercel deploy --prod
 ```
 - Region: `bom1` (Mumbai).
-- Add custom domain `app.paybridgex.in`.
+- Add custom domain `app.shahworks.com`.
 - Enable **Vercel Firewall** + **Bot Protection** + **WAF rules**.
 
 Alternative: AWS Amplify, Render, or self-hosted on AWS ECS Fargate

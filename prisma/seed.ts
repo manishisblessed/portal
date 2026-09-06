@@ -5,17 +5,17 @@ import { seedServiceRoutes } from "../src/lib/services/catalog";
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log("→ Seeding Paybridgex database…");
+  console.log("→ Seeding ShahWorks database…");
 
-  // ── Master Admin (primary platform owner) ──
-  const masterAdminHash = await bcrypt.hash("9090702707", 12);
+  // ── Master Admin ──
+  const masterAdminHash = await bcrypt.hash("Masteradmin_9090909001", 12);
   const masterAdmin = await prisma.user.upsert({
-    where: { email: "manish@shahworks.com" },
+    where: { email: "masteradmin@shahworks.com" },
     update: { passwordHash: masterAdminHash, status: UserStatus.ACTIVE },
     create: {
-      name: "Manish Shah",
-      email: "manish@shahworks.com",
-      phone: "+919090702707",
+      name: "Masteradmin",
+      email: "masteradmin@shahworks.com",
+      phone: "+919090909001",
       passwordHash: masterAdminHash,
       role: Role.MASTER_ADMIN,
       status: UserStatus.ACTIVE,
@@ -23,23 +23,33 @@ async function main() {
     }
   });
 
-  // ── Role network accounts (Lion_9090702707) ──
-  const roleHash = await bcrypt.hash("Lion_9090702707", 12);
-
-  const demoSD = await prisma.user.upsert({
-    where: { email: "manishspecial009@outlook.com" },
-    update: {
-      name: "Manish K Shah",
-      passwordHash: roleHash,
-      role: Role.SUPER_DISTRIBUTOR,
-      status: UserStatus.ACTIVE,
-      walletBalance: 0,
-    },
+  // ── Admin ──
+  const adminHash = await bcrypt.hash("Admin_9090909002", 12);
+  await prisma.user.upsert({
+    where: { email: "admin@shahworks.com" },
+    update: { passwordHash: adminHash, status: UserStatus.ACTIVE },
     create: {
-      name: "Manish K Shah",
-      email: "manishspecial009@outlook.com",
-      phone: "+919000000201",
-      passwordHash: roleHash,
+      name: "Myadmin",
+      email: "admin@shahworks.com",
+      phone: "+919090909002",
+      passwordHash: adminHash,
+      role: Role.ADMIN,
+      status: UserStatus.ACTIVE,
+      shopName: "ShahWorks Admin Office",
+      parentId: masterAdmin.id
+    }
+  });
+
+  // ── Super Distributor ──
+  const sdHash = await bcrypt.hash("SuperDistributor_9090909003", 12);
+  const demoSD = await prisma.user.upsert({
+    where: { email: "superdistributor@shahworks.com" },
+    update: { passwordHash: sdHash, status: UserStatus.ACTIVE },
+    create: {
+      name: "SuperDistributor",
+      email: "superdistributor@shahworks.com",
+      phone: "+919090909003",
+      passwordHash: sdHash,
       role: Role.SUPER_DISTRIBUTOR,
       status: UserStatus.ACTIVE,
       walletBalance: 0,
@@ -47,20 +57,16 @@ async function main() {
     }
   });
 
+  // ── Master Distributor ──
+  const mdHash = await bcrypt.hash("MasterDistributor_9090909004", 12);
   const demoMD = await prisma.user.upsert({
-    where: { email: "manishspecial009@gmail.com" },
-    update: {
-      name: "Manish Kumar",
-      passwordHash: roleHash,
-      role: Role.MASTER_DISTRIBUTOR,
-      status: UserStatus.ACTIVE,
-      walletBalance: 0,
-    },
+    where: { email: "masterdistributor@shahworks.com" },
+    update: { passwordHash: mdHash, status: UserStatus.ACTIVE },
     create: {
-      name: "Manish Kumar",
-      email: "manishspecial009@gmail.com",
-      phone: "+919000000202",
-      passwordHash: roleHash,
+      name: "MasterDistributor",
+      email: "masterdistributor@shahworks.com",
+      phone: "+919090909004",
+      passwordHash: mdHash,
       role: Role.MASTER_DISTRIBUTOR,
       status: UserStatus.ACTIVE,
       walletBalance: 0,
@@ -68,20 +74,16 @@ async function main() {
     }
   });
 
+  // ── Distributor ──
+  const dtHash = await bcrypt.hash("Distributor_9090909005", 12);
   const demoDT = await prisma.user.upsert({
-    where: { email: "manishkshah27@outlook.com" },
-    update: {
-      name: "M K Shah",
-      passwordHash: roleHash,
-      role: Role.DISTRIBUTOR,
-      status: UserStatus.ACTIVE,
-      walletBalance: 0,
-    },
+    where: { email: "distributor@shahworks.com" },
+    update: { passwordHash: dtHash, status: UserStatus.ACTIVE },
     create: {
-      name: "M K Shah",
-      email: "manishkshah27@outlook.com",
-      phone: "+919000000203",
-      passwordHash: roleHash,
+      name: "Distributor",
+      email: "distributor@shahworks.com",
+      phone: "+919090909005",
+      passwordHash: dtHash,
       role: Role.DISTRIBUTOR,
       status: UserStatus.ACTIVE,
       walletBalance: 0,
@@ -89,61 +91,23 @@ async function main() {
     }
   });
 
+  // ── Retailer ──
+  const rtHash = await bcrypt.hash("Distributor_9090909006", 12);
   await prisma.user.upsert({
-    where: { email: "manishisspecial@gmail.com" },
-    update: {
-      name: "Manish Shah",
-      passwordHash: roleHash,
-      role: Role.RETAILER,
-      status: UserStatus.ACTIVE,
-      shopName: null,
-      walletBalance: 0,
-    },
+    where: { email: "retailer@shahworks.com" },
+    update: { passwordHash: rtHash, status: UserStatus.ACTIVE },
     create: {
-      name: "Manish Shah",
-      email: "manishisspecial@gmail.com",
-      phone: "+919000000204",
-      passwordHash: roleHash,
+      name: "Retailer",
+      email: "retailer@shahworks.com",
+      phone: "+919090909006",
+      passwordHash: rtHash,
       role: Role.RETAILER,
       status: UserStatus.ACTIVE,
-      city: "Mumbai",
-      state: "Maharashtra",
-      pincode: "400001",
+      city: "New Delhi",
+      state: "Delhi",
+      pincode: "110078",
       walletBalance: 0,
       parentId: demoDT.id
-    }
-  });
-
-  // ── K3next demo accounts (K3next@250120) ──
-  const k3Hash = await bcrypt.hash("K3next@250120", 12);
-
-  const k3SD = await prisma.user.upsert({
-    where: { email: "nikunjdeshani7878@gmail.com" },
-    update: { passwordHash: k3Hash, role: Role.SUPER_DISTRIBUTOR, status: UserStatus.ACTIVE },
-    create: {
-      name: "Nikunj Ashokbhai Deshani",
-      email: "nikunjdeshani7878@gmail.com",
-      phone: "+919712344484",
-      passwordHash: k3Hash,
-      role: Role.SUPER_DISTRIBUTOR,
-      status: UserStatus.ACTIVE,
-      walletBalance: 0,
-      parentId: masterAdmin.id
-    }
-  });
-
-  await prisma.user.upsert({
-    where: { email: "kishangondaliya7575@gmail.com" },
-    update: { passwordHash: k3Hash, role: Role.MASTER_DISTRIBUTOR, status: UserStatus.ACTIVE },
-    create: {
-      name: "Kishan Gondaliya",
-      email: "kishangondaliya7575@gmail.com",
-      phone: "+916354202777",
-      passwordHash: k3Hash,
-      role: Role.MASTER_DISTRIBUTOR,
-      status: UserStatus.ACTIVE,
-      walletBalance: 0,
-      parentId: k3SD.id
     }
   });
 
@@ -173,17 +137,12 @@ async function main() {
   console.log(`  Service routes: +${routes.created} new, ${routes.updated} refreshed`);
 
   console.log("✓ Seed complete.");
-  console.log("  Master Admin:        manish@shahworks.com / 9090702707");
-  console.log("");
-  console.log("  Role accounts (password: Lion_9090702707):");
-  console.log("  Super Distributor:   manishspecial009@outlook.com  (Manish K Shah)");
-  console.log("  Master Distributor:  manishspecial009@gmail.com    (Manish Kumar)");
-  console.log("  Distributor:         manishkshah27@outlook.com     (M K Shah)");
-  console.log("  Retailer:            manishisspecial@gmail.com     (Manish Shah)");
-  console.log("");
-  console.log("  K3next accounts (password: K3next@250120):");
-  console.log("  Super Distributor:   nikunjdeshani7878@gmail.com   (Nikunj Ashokbhai Deshani)");
-  console.log("  Master Distributor:  kishangondaliya7575@gmail.com (Kishan Gondaliya)");
+  console.log("  Master Admin:        masteradmin@shahworks.com / Masteradmin_9090909001");
+  console.log("  Admin:               admin@shahworks.com / Admin_9090909002");
+  console.log("  Super Distributor:   superdistributor@shahworks.com / SuperDistributor_9090909003");
+  console.log("  Master Distributor:  masterdistributor@shahworks.com / MasterDistributor_9090909004");
+  console.log("  Distributor:         distributor@shahworks.com / Distributor_9090909005");
+  console.log("  Retailer:            retailer@shahworks.com / Distributor_9090909006");
 }
 
 main()

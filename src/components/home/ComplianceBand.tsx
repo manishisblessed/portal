@@ -38,7 +38,7 @@ export function ComplianceBand() {
                 </span>
               </h2>
               <p className="mt-5 text-white/65">
-                Paybridgex is engineered on regulated Indian payment
+                ShahWorks is engineered on regulated Indian payment
                 infrastructure, with security and compliance reviewed before a
                 single customer-facing feature ships.
               </p>

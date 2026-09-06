@@ -102,7 +102,7 @@ export default function AdminCommissionsPage() {
           <>
             <ReportActions
               filename="commission-master"
-              title="Paybridgex · Commission Master"
+              title="ShahWorks · Commission Master"
               subtitle="Service-wise rate-card"
               columns={[
                 { key: "service", header: "Service" },

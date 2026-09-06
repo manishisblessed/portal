@@ -24,7 +24,7 @@ import { company } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Career",
   description:
-    "Join Paybridgex in Ahmedabad or remotely — we're hiring across engineering, design, sales, operations and compliance to build India's most trusted payment bridge."
+    "Join ShahWorks in New Delhi or remotely — we're hiring across engineering, design, sales, operations and compliance to build India's most trusted payment bridge."
 };
 
 const values = [
@@ -38,7 +38,7 @@ const values = [
 const perks = [
   { icon: Coins, title: "Competitive pay + ESOPs", text: "Own a piece of the bridge you're building." },
   { icon: HeartPulse, title: "Health cover for family", text: "You, your spouse, kids and parents." },
-  { icon: Laptop, title: "Hybrid & remote friendly", text: "Ahmedabad HQ with remote-first engineering." },
+  { icon: Laptop, title: "Hybrid & remote friendly", text: "New Delhi HQ with remote-first engineering." },
   { icon: GraduationCap, title: "Quarterly learning budget", text: "Courses, books and conferences on us." },
   { icon: Plane, title: "Annual team offsite", text: "One week a year to think, bond and recharge." },
   { icon: Baby, title: "Generous parental leave", text: "For every kind of parent." }
@@ -47,16 +47,16 @@ const perks = [
 const process = [
   { icon: FileText, step: "Apply", text: "Send your résumé or portfolio. No cover letter needed — your work speaks." },
   { icon: PhoneCall, step: "Intro call", text: "30 minutes with the hiring manager about the role and your story." },
-  { icon: Users, step: "Skill rounds", text: "One or two practical rounds built around real Paybridgex problems." },
+  { icon: Users, step: "Skill rounds", text: "One or two practical rounds built around real ShahWorks problems." },
   { icon: Handshake, step: "Offer", text: "Decision within 5 working days of your final round. Always." }
 ];
 
 const openings = [
-  { title: "Senior Backend Engineer (Payments)", team: "Engineering", location: "Ahmedabad / Remote", type: "Full-time" },
-  { title: "Product Designer (Retailer App)", team: "Design", location: "Ahmedabad", type: "Full-time" },
-  { title: "Regional Sales Manager (Gujarat)", team: "Sales", location: "Ahmedabad", type: "Full-time" },
-  { title: "Customer Success Lead", team: "Operations", location: "Ahmedabad", type: "Full-time" },
-  { title: "Compliance Manager", team: "Compliance", location: "Ahmedabad", type: "Full-time" },
+  { title: "Senior Backend Engineer (Payments)", team: "Engineering", location: "New Delhi / Remote", type: "Full-time" },
+  { title: "Product Designer (Retailer App)", team: "Design", location: "New Delhi", type: "Full-time" },
+  { title: "Regional Sales Manager (North India)", team: "Sales", location: "New Delhi", type: "Full-time" },
+  { title: "Customer Success Lead", team: "Operations", location: "New Delhi", type: "Full-time" },
+  { title: "Compliance Manager", team: "Compliance", location: "New Delhi", type: "Full-time" },
   { title: "Growth Marketing Intern", team: "Marketing", location: "Remote", type: "Internship" }
 ];
 
@@ -71,7 +71,7 @@ export default function CareerPage() {
             <span className="gradient-text">India&apos;s payment bridge</span>
           </>
         }
-        description="We're a young Ahmedabad company with an outsized mission: make world-class payments infrastructure available at every counter in the country. Come build it with us."
+        description="We're a young New Delhi company with an outsized mission: make world-class payments infrastructure available at every counter in the country. Come build it with us."
       />
 
       {/* Culture band with counters */}
@@ -217,7 +217,7 @@ export default function CareerPage() {
                   Don&apos;t see your role?
                 </h2>
                 <p className="mt-1 text-sm text-white/70">
-                  Great people don&apos;t always fit a listing. Tell us what you&apos;d build at Paybridgex — we read every mail.
+                  Great people don&apos;t always fit a listing. Tell us what you&apos;d build at ShahWorks — we read every mail.
                 </p>
               </div>
               <a href={`mailto:careers@${company.domain}`}>

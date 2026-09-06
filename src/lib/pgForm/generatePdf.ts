@@ -38,7 +38,7 @@ export async function generatePgFormPdf(data: PgFormData): Promise<Uint8Array> {
     bufferPages: true,
     info: {
       Title: "Payment Gateway Onboarding Form",
-      Author: "K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED",
+      Author: "SHAH WORKS PRIVATE LIMITED",
     },
   });
   doc.registerFont("Hindi", fontBytes);
@@ -59,7 +59,7 @@ export async function generatePgFormPdf(data: PgFormData): Promise<Uint8Array> {
 
   function header() {
     doc.font("Helvetica-Bold").fontSize(18).fillColor(BRAND).text(
-      "K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED",
+      "SHAH WORKS PRIVATE LIMITED",
       left,
       PAGE_MARGIN,
       { align: "center", width: contentWidth }
@@ -174,7 +174,7 @@ export async function generatePgFormPdf(data: PgFormData): Promise<Uint8Array> {
     doc.y += 6;
     doc.font("Helvetica-Bold").fontSize(10).fillColor(INK).text("Authorized Signatory", left, doc.y);
     doc.font("Helvetica").fontSize(9).fillColor(MUTED).text(
-      "K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED",
+      "SHAH WORKS PRIVATE LIMITED",
       left,
       doc.y + 2
     );
@@ -226,18 +226,18 @@ export async function generatePgFormPdf(data: PgFormData): Promise<Uint8Array> {
 
   const applicant = data.applicantName || "_______________";
   paragraph(
-    `मैं, ${applicant}, यह घोषित करता/करती हूँ कि K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED (Paybridgex) ` +
+    `मैं, ${applicant}, यह घोषित करता/करती हूँ कि SHAH WORKS PRIVATE LIMITED (ShahWorks) ` +
       `के Payment Gateway की सुविधा हेतु मेरे द्वारा दी गई समस्त जानकारी, KYC दस्तावेज़, बैंक खाता ` +
       `एवं व्यवसाय संबंधी विवरण सत्य, सही एवं मेरे स्वयं के हैं। मैं निम्नलिखित शर्तों से पूर्णतः सहमत हूँ—`
   );
 
   const clauses = [
-    "1. I authorize K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED (\u201cPaybridgex\u201d) to enable Payment Gateway services on my merchant ID and to settle funds to the bank account listed above.",
+    "1. I authorize SHAH WORKS PRIVATE LIMITED (\u201cShahWorks\u201d) to enable Payment Gateway services on my merchant ID and to settle funds to the bank account listed above.",
     "2. I will use the Payment Gateway only for lawful, genuine business transactions of the category disclosed at onboarding and will not process gambling, betting, crypto, foreign remittance misuse, third-party fund pass-through or any other prohibited activity.",
-    "3. I am solely responsible for every transaction, chargeback, dispute, refund, penalty and fraud arising from my merchant ID, and I authorize Paybridgex to debit my wallet / settlement balance / security deposit to recover any amount due.",
+    "3. I am solely responsible for every transaction, chargeback, dispute, refund, penalty and fraud arising from my merchant ID, and I authorize ShahWorks to debit my wallet / settlement balance / security deposit to recover any amount due.",
     "4. I will submit updated KYC, business proof and bank documents whenever requested, and I understand that failure to do so may result in suspension of settlements and / or termination of services.",
-    "5. I agree to the platform Terms of Service, Privacy Policy, MDR / fee schedule and Merchant Operating Guidelines published by Paybridgex, as amended from time to time.",
-    "6. I confirm that this form is signed voluntarily, without any coercion, and forms part of the binding merchant relationship with Paybridgex.",
+    "5. I agree to the platform Terms of Service, Privacy Policy, MDR / fee schedule and Merchant Operating Guidelines published by ShahWorks, as amended from time to time.",
+    "6. I confirm that this form is signed voluntarily, without any coercion, and forms part of the binding merchant relationship with ShahWorks.",
   ];
   for (const c of clauses) paragraph(c, { indent: 10, gap: 5 });
   doc.y += 4;
@@ -247,7 +247,7 @@ export async function generatePgFormPdf(data: PgFormData): Promise<Uint8Array> {
 
   companyUseOnly();
 
-  footer("This is a system-generated Payment Gateway onboarding form. K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED.");
+  footer("This is a system-generated Payment Gateway onboarding form. SHAH WORKS PRIVATE LIMITED.");
   doc.end();
   return done;
 }

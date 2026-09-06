@@ -67,7 +67,7 @@ function shell({
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light only" />
     <meta name="supported-color-schemes" content="light" />
-    <title>Paybridgex</title>
+    <title>ShahWorks</title>
     <!--[if mso]><style>* { font-family: Arial, sans-serif !important; }</style><![endif]-->
   </head>
   <body style="margin:0;padding:0;background:${BRAND.bg};color:${BRAND.ink};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
@@ -85,7 +85,7 @@ function shell({
                   <tr>
                     <td>
                       <div style="display:inline-block;background:rgba(255,255,255,0.14);padding:8px 14px;border-radius:10px;">
-                        <span style="color:#ffffff;font-size:20px;font-weight:800;letter-spacing:0.3px;">Paybridgex</span>
+                        <span style="color:#ffffff;font-size:20px;font-weight:800;letter-spacing:0.3px;">ShahWorks</span>
                       </div>
                       <div style="color:rgba(255,255,255,0.72);font-size:11px;font-weight:600;letter-spacing:2px;margin-top:10px;text-transform:uppercase;">PG &middot; POS &middot; QR Payments</div>
                     </td>
@@ -101,15 +101,15 @@ function shell({
             <tr>
               <td style="padding:24px 40px 32px 40px;">
                 <div style="border-top:1px solid ${BRAND.border};padding-top:20px;font-size:12px;line-height:18px;color:${BRAND.inkMuted};">
-                  <div style="font-weight:700;color:${BRAND.ink};margin-bottom:4px;">K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED</div>
-                  <div>Ahmedabad, Gujarat, India &middot; <a href="https://paybridgex.in" style="color:${BRAND.primary};text-decoration:none;">paybridgex.in</a></div>
-                  <div style="margin-top:12px;color:${BRAND.inkLight};">You are receiving this email because someone from your organisation invited you to Paybridgex. If this wasn't you, you can safely ignore this message.</div>
+                  <div style="font-weight:700;color:${BRAND.ink};margin-bottom:4px;">SHAH WORKS PRIVATE LIMITED</div>
+                  <div>New Delhi-110078 &middot; <a href="https://shahworks.com" style="color:${BRAND.primary};text-decoration:none;">shahworks.com</a></div>
+                  <div style="margin-top:12px;color:${BRAND.inkLight};">You are receiving this email because someone from your organisation invited you to ShahWorks. If this wasn't you, you can safely ignore this message.</div>
                 </div>
               </td>
             </tr>
           </table>
           <div style="max-width:600px;margin:16px auto 0;font-size:11px;color:${BRAND.inkLight};text-align:center;">
-            &copy; ${new Date().getFullYear()} K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED. All rights reserved.
+            &copy; ${new Date().getFullYear()} SHAH WORKS PRIVATE LIMITED. All rights reserved.
           </div>
         </td>
       </tr>
@@ -136,16 +136,16 @@ export function renderInviteEmail(opts: {
   const greeting = firstName ? `Hello ${firstName},` : "Hello,";
 
   const preheader = opts.isReminder
-    ? `Reminder — finish setting up your ${roleLabel} account on Paybridgex. Link expires ${expiry}.`
-    : `You've been invited to join Paybridgex as a ${roleLabel}. Complete your onboarding in under 5 minutes.`;
+    ? `Reminder — finish setting up your ${roleLabel} account on ShahWorks. Link expires ${expiry}.`
+    : `You've been invited to join ShahWorks as a ${roleLabel}. Complete your onboarding in under 5 minutes.`;
 
   const subject = opts.isReminder
-    ? `Reminder: complete your Paybridgex ${roleLabel} onboarding`
-    : `You're invited to Paybridgex — start earning as a ${roleLabel}`;
+    ? `Reminder: complete your ShahWorks ${roleLabel} onboarding`
+    : `You're invited to ShahWorks — start earning as a ${roleLabel}`;
 
   const headline = opts.isReminder
-    ? "Your Paybridgex invite is still waiting"
-    : "Welcome to Paybridgex";
+    ? "Your ShahWorks invite is still waiting"
+    : "Welcome to ShahWorks";
 
   const subhead = opts.isReminder
     ? `Just a friendly nudge — your onboarding link expires on <strong>${expiry}</strong>. It only takes a few minutes to finish.`
@@ -218,7 +218,7 @@ export function renderInviteEmail(opts: {
     </p>
     <p style="font-size:14px;color:${BRAND.ink};line-height:20px;margin:18px 0 8px 0;">
       Cheers,<br/>
-      <strong>Team Paybridgex</strong>
+      <strong>Team ShahWorks</strong>
     </p>
   `;
 
@@ -242,7 +242,7 @@ export function renderDocResubmissionEmail(opts: {
   const firstName = opts.name?.split(" ")[0]?.trim();
   const greeting = firstName ? `Hello ${firstName},` : "Hello,";
 
-  const subject = "Action needed: re-upload a few documents for Paybridgex";
+  const subject = "Action needed: re-upload a few documents for ShahWorks";
   const preheader = `A few of your documents need to be re-uploaded. It only takes a minute — link expires ${expiry}.`;
 
   const docRows = opts.documents
@@ -298,7 +298,7 @@ export function renderDocResubmissionEmail(opts: {
     </p>
     <p style="font-size:14px;color:${BRAND.ink};line-height:20px;margin:18px 0 8px 0;">
       Cheers,<br/>
-      <strong>Team Paybridgex</strong>
+      <strong>Team ShahWorks</strong>
     </p>
   `;
 
@@ -332,7 +332,7 @@ export function renderJoinRequestEmail(opts: {
 }): { subject: string; html: string } {
   const roleLabel = fmtRole(opts.role);
   const subject = `New join request — ${opts.name} (${roleLabel})`;
-  const preheader = `${opts.name} wants to join Paybridgex as a ${roleLabel}. Reach out and start onboarding.`;
+  const preheader = `${opts.name} wants to join ShahWorks as a ${roleLabel}. Reach out and start onboarding.`;
 
   const row = (label: string, value?: string | null) =>
     value
@@ -384,7 +384,7 @@ export function renderJoinRequestEmail(opts: {
     </table>
 
     <p style="font-size:14px;color:${BRAND.ink};line-height:20px;margin:18px 0 8px 0;">
-      &mdash; Paybridgex Platform
+      &mdash; ShahWorks Platform
     </p>
   `;
 
@@ -406,8 +406,8 @@ export function renderAccountApprovedEmail(opts: {
   const fullName = opts.name?.trim() || firstName || "there";
   const greeting = firstName ? `Dear ${fullName},` : "Dear user,";
 
-  const subject = `Your Paybridgex ${roleLabel} account is approved`;
-  const preheader = `Good news — your ${roleLabel} account is live. Sign in and start using Paybridgex.`;
+  const subject = `Your ShahWorks ${roleLabel} account is approved`;
+  const preheader = `Good news — your ${roleLabel} account is live. Sign in and start using ShahWorks.`;
 
   const body = `
     <div style="display:inline-block;background:#ecfdf5;color:#059669;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:6px 12px;border-radius:999px;">
@@ -418,7 +418,7 @@ export function renderAccountApprovedEmail(opts: {
     </h1>
     <p style="font-size:15px;line-height:24px;color:${BRAND.inkMuted};margin:0 0 8px 0;">${greeting}</p>
     <p style="font-size:15px;line-height:24px;color:${BRAND.inkMuted};margin:0 0 20px 0;">
-      Great news &mdash; your <strong style="color:${BRAND.ink};">${roleLabel}</strong> account on Paybridgex has been approved by our team. You can now sign in and access your dashboard.
+      Great news &mdash; your <strong style="color:${BRAND.ink};">${roleLabel}</strong> account on ShahWorks has been approved by our team. You can now sign in and access your dashboard.
     </p>
 
     <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:6px 0 22px 0;width:100%;">
@@ -470,11 +470,11 @@ export function renderAccountApprovedEmail(opts: {
       On first login you may be asked to set up two-factor authentication &mdash; this keeps your account secure.
     </p>
     <p style="font-size:13px;color:${BRAND.inkMuted};line-height:20px;margin:16px 0 0 0;">
-      Need help? Reply to this email or write to <a href="mailto:support@paybridgex.in" style="color:${BRAND.primary};text-decoration:none;font-weight:600;">support@paybridgex.in</a>.
+      Need help? Reply to this email or write to <a href="mailto:support@shahworks.com" style="color:${BRAND.primary};text-decoration:none;font-weight:600;">support@shahworks.com</a>.
     </p>
     <p style="font-size:14px;color:${BRAND.ink};line-height:20px;margin:18px 0 8px 0;">
       Cheers,<br/>
-      <strong>Team Paybridgex</strong>
+      <strong>Team ShahWorks</strong>
     </p>
   `;
 

@@ -10,7 +10,7 @@ export function TestimonialWall() {
         <SectionHeading
           eyebrow="From the counter"
           title="Partners who crossed over"
-          description="Retailers and distributors across Gujarat and beyond run their daily business on Paybridgex."
+          description="Retailers and distributors across Gujarat and beyond run their daily business on ShahWorks."
         />
 
         <Stagger stagger={0.1} className="grid gap-5 md:grid-cols-2">

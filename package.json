@@ -1,8 +1,8 @@
 {
-  "name": "paybridgex-portal",
+  "name": "shahworks-portal",
   "version": "0.1.0",
   "private": true,
-  "description": "Paybridgex (K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED) - Digital banking & utility fintech portal",
+  "description": "ShahWorks (SHAH WORKS PRIVATE LIMITED) - Digital banking & utility fintech portal",
   "scripts": {
     "dev": "next dev --turbo",
     "dev:all": "concurrently -k -n web,worker -c cyan,magenta \"npm run dev\" \"npm run worker\"",

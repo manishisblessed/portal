@@ -1,18 +1,13 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
-import { prisma } from "@/lib/db";
 import { createMobileToken, createSessionGrant } from "@/lib/auth-server";
 import { createTempToken } from "@/lib/two-factor";
-import { enforceRateLimit, RATE_LIMITS } from "@/lib/security/rateLimit";
 import {
-  assertNotLocked,
-  recordFailedLogin,
-  recordSuccessfulLogin,
-  recentFailureCount,
-  normalizeIdentifier,
-} from "@/lib/security/lockout";
-import { assertCaptcha } from "@/lib/security/captcha";
+  findDemoUser,
+  validateDemoPassword,
+  isDemoMode,
+} from "@/lib/demo-accounts";
 import {
   logSecurityEvent,
   detectLoginAnomalies,
@@ -68,17 +63,89 @@ export async function POST(req: Request) {
   }
 
   const { identifier, password, location, captchaToken, role: assertedRole } = parsed.data;
+
+  // ── Demo mode: authenticate against in-memory accounts ──
+  if (isDemoMode()) {
+    const demoUser = findDemoUser(identifier);
+    if (!demoUser || !validateDemoPassword(demoUser, password)) {
+      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+    }
+
+    if (assertedRole && demoUser.role !== assertedRole) {
+      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+    }
+
+    const loginBlock = getLoginBlock(demoUser.status);
+    if (loginBlock) {
+      return NextResponse.json(
+        { error: loginBlock.error, code: loginBlock.code },
+        { status: 403 }
+      );
+    }
+
+    const sessionUser = {
+      id: demoUser.id,
+      userCode: demoUser.userCode,
+      name: demoUser.name,
+      email: demoUser.email,
+      phone: demoUser.phone,
+      role: demoUser.role,
+      status: demoUser.status,
+      walletBalance: demoUser.walletBalance,
+      allowedTabs: demoUser.allowedTabs,
+      enabledServices: demoUser.enabledServices,
+      twoFactorEnabled: demoUser.twoFactorEnabled,
+      twoFactorExempt: demoUser.twoFactorExempt,
+    };
+
+    const token = createMobileToken(sessionUser as any);
+    const grant = createSessionGrant(demoUser.id);
+
+    return NextResponse.json({
+      ok: true,
+      needs2FA: false,
+      needsSetup: true,
+      token,
+      grant,
+      user: sessionUser,
+    });
+  }
+
+  // ── Database mode: full auth with Prisma ──
+  let prisma: any;
+  let enforceRateLimit: any;
+  let RATE_LIMITS: any;
+  let assertNotLocked: any;
+  let recordFailedLogin: any;
+  let recordSuccessfulLogin: any;
+  let recentFailureCount: any;
+  let normalizeIdentifier: any;
+  let assertCaptcha: any;
+
+  try {
+    const dbMod = await import("@/lib/db");
+    prisma = dbMod.prisma;
+    const rlMod = await import("@/lib/security/rateLimit");
+    enforceRateLimit = rlMod.enforceRateLimit;
+    RATE_LIMITS = rlMod.RATE_LIMITS;
+    const lockMod = await import("@/lib/security/lockout");
+    assertNotLocked = lockMod.assertNotLocked;
+    recordFailedLogin = lockMod.recordFailedLogin;
+    recordSuccessfulLogin = lockMod.recordSuccessfulLogin;
+    recentFailureCount = lockMod.recentFailureCount;
+    normalizeIdentifier = lockMod.normalizeIdentifier;
+    const captchaMod = await import("@/lib/security/captcha");
+    assertCaptcha = captchaMod.assertCaptcha;
+  } catch {
+    return NextResponse.json({ error: "Database not configured" }, { status: 500 });
+  }
+
   const normalized = normalizeIdentifier(identifier);
 
   try {
-    // 1) Rate limit by IP and by identifier (fixed window, shared across PM2).
     await enforceRateLimit(`login:ip:${ip}`, RATE_LIMITS.login);
     await enforceRateLimit(`login:id:${normalized}`, RATE_LIMITS.login);
-
-    // 2) Bot/abuse gate (no-op unless SECURITY_CAPTCHA_ENABLED).
     await assertCaptcha(captchaToken, ip);
-
-    // 3) Brute-force lockout (exponential backoff across windows).
     await assertNotLocked(normalized);
   } catch (e) {
     return toErrorResponse(e);
@@ -106,12 +173,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
-    // Role assertion: if the public login form supplied a role, the account's
-    // real role must match. Return the SAME generic error as an invalid
-    // password to avoid leaking whether the account exists or what role it
-    // holds. We do NOT increment the brute-force counter here — reaching this
-    // branch already required a valid password, so an honest user who picked
-    // the wrong role card should be able to hit "change" and retry freely.
     if (assertedRole && user.role !== assertedRole) {
       await logSecurityEvent({
         action: "auth.login_role_mismatch",
@@ -144,11 +205,9 @@ export async function POST(req: Request) {
       );
     }
 
-    // Successful credential check — clear lockout counter.
     const priorFailures = await recentFailureCount(normalized);
     await recordSuccessfulLogin(normalized);
 
-    // Anomaly detection against the user's last known login context.
     const anomalies = detectLoginAnomalies({
       lastLoginLat: user.lastLoginLat,
       lastLoginLng: user.lastLoginLng,
@@ -191,11 +250,6 @@ export async function POST(req: Request) {
       },
     });
 
-    // TPIN login: a master-admin has waived mandatory 2FA for this account and
-    // allowed authentication with the transaction PIN as the second factor. The
-    // frontend collects the PIN + risk acceptance and calls
-    // /api/auth/pin-login/verify with this tempToken. Requires a PIN to be set;
-    // if it isn't, fall through to the normal (setup) path.
     if (user.twoFactorExempt && user.pinLoginEnabled && user.txnPinHash) {
       const tempToken = createTempToken(user.id);
       return NextResponse.json({
@@ -209,7 +263,6 @@ export async function POST(req: Request) {
       });
     }
 
-    // 2FA is mandatory for all users.
     if (user.twoFactorEnabled && user.twoFactorSecret) {
       const tempToken = createTempToken(user.id);
       return NextResponse.json({
@@ -221,9 +274,6 @@ export async function POST(req: Request) {
       });
     }
 
-    // 2FA NOT configured — issue a session grant so the frontend can
-    // call signIn("token-login") without a second password check. Also
-    // include a mobile token for native clients.
     const sessionUser = {
       id: user.id,
       userCode: (user as { userCode?: string | null }).userCode ?? null,

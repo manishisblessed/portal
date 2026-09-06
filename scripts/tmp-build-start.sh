@@ -13,7 +13,7 @@ sudo swapon /swapfile
 grep -q '/swapfile' /etc/fstab || echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab >/dev/null
 free -h | sed 's/^/    /'
 
-cd /home/ubuntu/paybridgex
+cd /home/ubuntu/shahworks
 
 echo "==> Building Next.js (max-old-space-size=3584)"
 export NODE_OPTIONS="--max-old-space-size=3584"

@@ -11,9 +11,9 @@ export default function UpiPage() {
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
   const [copied, setCopied] = useState(false);
-  const upiId = "paybridgex@axisbank";
-  const link = `upi://pay?pa=${upiId}&pn=Paybridgex&am=${amount}&tn=${encodeURIComponent(
-    note || "Paybridgex payment"
+  const upiId = "shahworks@axisbank";
+  const link = `upi://pay?pa=${upiId}&pn=ShahWorks&am=${amount}&tn=${encodeURIComponent(
+    note || "ShahWorks payment"
   )}&cu=INR`;
 
   function copy() {

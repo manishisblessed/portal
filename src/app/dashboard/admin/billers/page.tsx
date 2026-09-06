@@ -83,7 +83,7 @@ export default function AdminBillersPage() {
           <>
             <ReportActions
               filename="billers"
-              title="Paybridgex · Billers & Routing"
+              title="ShahWorks · Billers & Routing"
               subtitle="Category-level uptime and routing"
               columns={[
                 { key: "category", header: "Category" },

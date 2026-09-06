@@ -28,13 +28,13 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Paybridgex (operated by K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED) is an Ahmedabad-born payments fintech building the bridge that brings formal financial services to every Indian counter."
+    "ShahWorks (operated by SHAH WORKS PRIVATE LIMITED) is a New Delhi-based payments fintech building the bridge that brings formal financial services to every Indian counter."
 };
 
 const facts = [
-  { label: "Legal entity", value: "K.A. Paybridgex Solution (OPC) Pvt. Ltd." },
+  { label: "Legal entity", value: "Shah Works Pvt. Ltd." },
   { label: "CIN", value: company.cin },
-  { label: "Incorporated", value: `${company.incorporated}, Ahmedabad` },
+  { label: "Incorporated", value: `${company.incorporated}, New Delhi` },
   { label: "Tagline", value: company.tagline }
 ];
 
@@ -42,22 +42,22 @@ const milestones = [
   {
     year: "2025",
     title: "The idea",
-    text: "Months of groundwork across Gujarat's kirana counters and CSP outlets make the brief painfully clear: Bharat needs one trusted, fair, instant payment bridge."
+    text: "Months of groundwork across India's kirana counters and CSP outlets make the brief painfully clear: Bharat needs one trusted, fair, instant payment bridge."
   },
   {
     year: "Q1 2026",
     title: "Incorporation",
-    text: "K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED is incorporated in Ahmedabad, Gujarat (CIN U82910GJ2026OPC181144)."
+    text: "SHAH WORKS PRIVATE LIMITED is incorporated in New Delhi (CIN U82910DL2026PTC000000)."
   },
   {
     year: "Q2 2026",
     title: "Platform build",
-    text: "The Paybridgex stack takes shape — wallet ledger, commission engine, KYC pipeline and partner-bank integrations, engineered in Ahmedabad."
+    text: "The ShahWorks stack takes shape — wallet ledger, commission engine, KYC pipeline and partner-bank integrations, engineered in New Delhi."
   },
   {
     year: "Q2 2026",
     title: "First go-live",
-    text: "AePS, DMT and BBPS go live for our first pilot retailers across Ahmedabad, Gandhinagar and Vadodara."
+    text: "AePS, DMT and BBPS go live for our first pilot retailers across Delhi, Noida and Gurugram."
   },
   {
     year: "Q3 2026",
@@ -67,7 +67,7 @@ const milestones = [
   {
     year: "Today",
     title: "Growing the bridge",
-    text: "Building an India-wide distributor network from Ahmedabad — 28 states, 8 UTs, 9 languages, one mission."
+    text: "Building an India-wide distributor network from New Delhi — 28 states, 8 UTs, 9 languages, one mission."
   }
 ];
 
@@ -153,7 +153,7 @@ export default function AboutPage() {
             <span className="gradient-text">formal finance</span>
           </>
         }
-        description="Paybridgex was born in Ahmedabad in 2026 with one job: give every Indian retailer the payment infrastructure a metro enterprise takes for granted."
+        description="ShahWorks was born in New Delhi in 2026 with one job: give every Indian retailer the payment infrastructure a metro enterprise takes for granted."
       />
 
       {/* Who we are + fact panel */}
@@ -170,10 +170,10 @@ export default function AboutPage() {
                 </h2>
                 <div className="mt-5 space-y-4 text-ink-600">
                   <p>
-                    India&apos;s digital payments story is extraordinary — but at millions of counters it still arrives second-hand: slow settlements, opaque commissions and support lines that never pick up. Paybridgex exists to close that gap.
+                    India&apos;s digital payments story is extraordinary — but at millions of counters it still arrives second-hand: slow settlements, opaque commissions and support lines that never pick up. ShahWorks exists to close that gap.
                   </p>
                   <p>
-                    From our home in Shahibag, Ahmedabad, we build one platform where a retailer can run AePS banking, money transfer, UPI collections, bill payments, recharges and travel — with instant settlement to one wallet and a human on the phone 24×7.
+                    From our home in New Delhi, we build one platform where a retailer can run AePS banking, money transfer, UPI collections, bill payments, recharges and travel — with instant settlement to one wallet and a human on the phone 24×7.
                   </p>
                   <p>
                     We&apos;re young by design. Being incorporated in {company.incorporated} means no legacy systems, no legacy thinking — just modern rails built for the way Bharat actually transacts.
@@ -228,7 +228,7 @@ export default function AboutPage() {
                 </span>
                 <h2 className="mt-6 font-display text-2xl font-bold text-ink-900">Our vision</h2>
                 <p className="mt-3 text-ink-600">
-                  Become India&apos;s most trusted payment bridge — the network a retailer in any of 10,000+ pin codes points to and says, &quot;my money moves through Paybridgex, and it&apos;s never let me down.&quot;
+                  Become India&apos;s most trusted payment bridge — the network a retailer in any of 10,000+ pin codes points to and says, &quot;my money moves through ShahWorks, and it&apos;s never let me down.&quot;
                 </p>
               </div>
             </Reveal>
@@ -319,7 +319,7 @@ export default function AboutPage() {
                   Our reach
                 </p>
                 <h2 className="mt-3 font-display text-3xl font-bold md:text-4xl">
-                  Built in Ahmedabad, built for all of India
+                  Built in New Delhi, built for all of India
                 </h2>
                 <p className="mt-4 text-white/70">
                   The distributor programme is live nationally — wherever there&apos;s a counter and a connection, the bridge reaches.
@@ -421,7 +421,7 @@ export default function AboutPage() {
                 The bridge is open. Walk across.
               </h2>
               <p className="mx-auto mt-3 max-w-xl text-white/70">
-                Meet the people building Paybridgex, or become one of the merchants they build for.
+                Meet the people building ShahWorks, or become one of the merchants they build for.
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link href="/team">

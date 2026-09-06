@@ -1,5 +1,5 @@
 /**
- * Paybridgex background worker (PM2 process, separate from the Next.js server).
+ * ShahWorks background worker (PM2 process, separate from the Next.js server).
  *
  * Why a separate process: heavy / external / money-moving calls (payout
  * initiation, status reconciliation) must NOT run inside an HTTP request. The
@@ -7,7 +7,7 @@
  * IP-whitelisted EC2 box and finalizes via the shared idempotent service.
  *
  * Run locally:   npm run worker
- * Run on EC2:    pm2 start ecosystem.config.js   (app: paybridgex-worker)
+ * Run on EC2:    pm2 start ecosystem.config.js   (app: shahworks-worker)
  *
  * Env: needs DATABASE_URL/DIRECT_URL, APP_ENCRYPTION_KEY, PARTNER_PAYOUT_ENABLED
  * and the payout rail credentials (see .env.example). We best-effort load a

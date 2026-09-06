@@ -1,5 +1,5 @@
 /**
- * One-shot asset pipeline for the official K.A. Paybridgex logos.
+ * One-shot asset pipeline for the official ShahWorks logos.
  *
  * Input:  src/logos/logo.jpeg (light bg), src/logos/logo_dark.jpeg (dark bg)
  * Output: transparent full lockups, emblem-only marks, web icons and

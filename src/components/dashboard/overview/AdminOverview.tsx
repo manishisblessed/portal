@@ -122,7 +122,7 @@ export function AdminOverview({ session }: { session: Session }) {
             </span>
             Platform admin · {session.email}
           </p>
-          <h1 className="heading-md">Paybridgex Command Centre</h1>
+          <h1 className="heading-md">ShahWorks Command Centre</h1>
         </div>
         <div className="flex flex-wrap gap-2">
           <Button variant="outline" size="sm" onClick={fetchStats} disabled={loading}>

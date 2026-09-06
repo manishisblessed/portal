@@ -21,7 +21,7 @@ import { dec, gt, round, type Money } from "@/lib/money";
  * Suspense account pattern (see wallet/suspense.ts).
  */
 
-const TDS_ACCOUNT_EMAIL = "tds-payable@system.paybridgex";
+const TDS_ACCOUNT_EMAIL = "tds-payable@system.shahworks";
 const TDS_ACCOUNT_PHONE = "+910000000002";
 
 let cachedTdsAccountId: string | null = null;

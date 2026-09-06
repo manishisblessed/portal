@@ -243,7 +243,7 @@ export default function PayoutApprovalsPage() {
           <>
             <ReportActions
               filename="payout-approvals"
-              title="Paybridgex · Payout Approvals"
+              title="ShahWorks · Payout Approvals"
               subtitle={filter === "PENDING" ? "Pending queue" : "All payouts"}
               columns={[
                 { key: "id", header: "Payout ID" },

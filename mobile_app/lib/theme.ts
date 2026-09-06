@@ -1,5 +1,5 @@
 export const colors = {
-  // Royal Blue — primary Paybridgex brand colour.
+  // Royal Blue — primary ShahWorks brand colour.
   brand: {
     50: "#eef4ff",
     100: "#d9e6ff",
@@ -13,7 +13,7 @@ export const colors = {
     900: "#192a82",
     950: "#131b4e"
   },
-  // Emerald Green — secondary Paybridgex brand colour.
+  // Emerald Green — secondary ShahWorks brand colour.
   accent: {
     50: "#ecfdf5",
     100: "#d1fae5",

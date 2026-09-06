@@ -126,7 +126,7 @@ worker makes the outbound payout calls, so the EC2 instance must egress from a
    restarts; only detach intentionally).
 
 Outbound payout calls run **only** from the worker process, so the whitelisted
-IP is the box (or NAT) the `paybridgex-worker` PM2 app runs on.
+IP is the box (or NAT) the `shahworks-worker` PM2 app runs on.
 
 ## 7. Run / deploy
 
@@ -138,13 +138,13 @@ npm run worker
 npx prisma migrate deploy
 ```
 
-PM2 (EC2): `ecosystem.config.js` defines two apps — `paybridgex` (web,
-cluster) and `paybridgex-worker` (fork, single instance: pg-boss handles
+PM2 (EC2): `ecosystem.config.js` defines two apps — `shahworks` (web,
+cluster) and `shahworks-worker` (fork, single instance: pg-boss handles
 concurrency and a single scheduler avoids duplicate cron fan-out).
 
 ```bash
 pm2 start ecosystem.config.js
-pm2 logs paybridgex-worker
+pm2 logs shahworks-worker
 ```
 
 ## 8. UI

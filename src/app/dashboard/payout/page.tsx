@@ -335,7 +335,7 @@ export default function PayoutPage() {
             {rows.length > 0 && (
               <ReportActions
                 filename="payouts"
-                title="Paybridgex · Payouts"
+                title="ShahWorks · Payouts"
                 subtitle="My payouts"
                 columns={[
                   { key: "id", header: "Payout ID" },
@@ -1128,8 +1128,8 @@ function PayoutReceipt({ result, onDone }: { result: PayoutResult; onDone: () =>
   const [copied, setCopied] = useState(false);
   const { session } = useAuth();
   const payBy = session?.userCode
-    ? `Pay by Paybridgex · RT Code ${session.userCode}`
-    : "Pay by Paybridgex";
+    ? `Pay by ShahWorks · RT Code ${session.userCode}`
+    : "Pay by ShahWorks";
   const isSuccess = result.status === "SUCCESS";
   const isFailed = result.status === "FAILED" || result.status === "REJECTED" || result.status === "REVERSED";
 
@@ -1340,7 +1340,7 @@ function printReceipt(result: PayoutResult, text: string, gradient: string, payB
   </head>
   <body>
     <div class="head">
-      <div style="font-weight:700">Paybridgex · Payout</div>
+      <div style="font-weight:700">ShahWorks · Payout</div>
       <div class="amt">₹${result.amount.toFixed(2)}</div>
     </div>
     <div class="div"></div>
@@ -1354,7 +1354,7 @@ function printReceipt(result: PayoutResult, text: string, gradient: string, payB
       })
       .join("")}
     <div class="div"></div>
-    <div class="foot"><div style="font-weight:600;color:#059669;margin-bottom:4px">${payBy}</div>Paybridgex · Payout Receipt</div>
+    <div class="foot"><div style="font-weight:600;color:#059669;margin-bottom:4px">${payBy}</div>ShahWorks · Payout Receipt</div>
   </body>
 </html>`);
   printWindow.document.close();

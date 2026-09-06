@@ -228,7 +228,7 @@ function AdminLoginForm({ location }: { location: LocationData }) {
             <Lock className="h-3.5 w-3.5" /> Restricted · Admin console
           </span>
           <h2 className="mt-6 font-display text-3xl font-bold leading-tight">
-            Paybridgex Admin <br /> Control Centre.
+            ShahWorks Admin <br /> Control Centre.
           </h2>
           <p className="mt-3 text-white/80">
             KYC approvals, biller routing, settlements, audit trail and full

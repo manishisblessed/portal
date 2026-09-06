@@ -135,7 +135,7 @@ export default function TransactionsPage() {
         </Button>
         <ReportActions
           filename="transactions"
-          title="Paybridgex · Transactions"
+          title="ShahWorks · Transactions"
           subtitle={`Live view · ${rows.length} records`}
           columns={[
             { key: "id", header: "Txn ID" },

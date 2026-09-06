@@ -4,19 +4,7 @@ import { getServerSession as _getServerSession } from "next-auth";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { headers } from "next/headers";
-import { prisma } from "./db";
-import {
-  assertNotLocked,
-  recordFailedLogin,
-  recordSuccessfulLogin,
-  AccountLockedError,
-  normalizeIdentifier,
-} from "./security/lockout";
-import { bumpTokenVersion } from "./security/session";
-import {
-  getCachedSessionValidation,
-  setCachedSessionValidation,
-} from "./security/sessionValidationCache";
+import { findDemoUserById, isDemoMode } from "./demo-accounts";
 import { isLoginAllowed } from "./security/accountGate";
 
 export type SessionUser = {
@@ -92,6 +80,27 @@ export const authOptions: NextAuthOptions = {
         const exp = parseInt(expStr, 10);
         if (isNaN(exp) || exp < Math.floor(Date.now() / 1000)) return null;
 
+        // Demo mode: resolve user from in-memory accounts
+        if (isDemoMode()) {
+          const demoUser = findDemoUserById(userId);
+          if (!demoUser || !isLoginAllowed(demoUser.status)) return null;
+          return {
+            id: demoUser.id,
+            userCode: demoUser.userCode,
+            name: demoUser.name,
+            email: demoUser.email,
+            phone: demoUser.phone,
+            role: demoUser.role,
+            status: demoUser.status,
+            walletBalance: demoUser.walletBalance,
+            allowedTabs: demoUser.allowedTabs,
+            enabledServices: demoUser.enabledServices,
+            twoFactorEnabled: demoUser.twoFactorEnabled,
+            twoFactorExempt: demoUser.twoFactorExempt,
+          };
+        }
+
+        const { prisma } = await import("./db");
         const user = await prisma.user.findUnique({
           where: { id: userId },
         });
@@ -123,10 +132,33 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials?.identifier || !credentials?.password) return null;
 
+        // Demo mode: skip DB entirely
+        if (isDemoMode()) {
+          const { findDemoUser, validateDemoPassword } = await import("./demo-accounts");
+          const demoUser = findDemoUser(credentials.identifier);
+          if (!demoUser || !validateDemoPassword(demoUser, credentials.password)) return null;
+          if (!isLoginAllowed(demoUser.status)) return null;
+          return {
+            id: demoUser.id,
+            userCode: demoUser.userCode,
+            name: demoUser.name,
+            email: demoUser.email,
+            phone: demoUser.phone,
+            role: demoUser.role,
+            status: demoUser.status,
+            walletBalance: demoUser.walletBalance,
+            allowedTabs: demoUser.allowedTabs,
+            enabledServices: demoUser.enabledServices,
+            twoFactorEnabled: demoUser.twoFactorEnabled,
+            twoFactorExempt: demoUser.twoFactorExempt,
+          };
+        }
+
+        const { prisma } = await import("./db");
+        const { assertNotLocked, recordFailedLogin, recordSuccessfulLogin, normalizeIdentifier, AccountLockedError } = await import("./security/lockout");
+
         const identifier = normalizeIdentifier(credentials.identifier);
 
-        // Brute-force lockout (shared with /api/auth/login). A locked
-        // identifier is refused here too; surface a clear error to NextAuth.
         try {
           await assertNotLocked(identifier);
         } catch (e) {
@@ -152,13 +184,8 @@ export const authOptions: NextAuthOptions = {
 
         if (!isLoginAllowed(user.status)) return null;
 
-        // If 2FA is enabled, block NextAuth session creation.
-        // The frontend must use /api/auth/login → /api/auth/2fa/verify flow instead.
         if (user.twoFactorEnabled) return null;
 
-        // 2FA-exempt accounts with PIN login enabled must authenticate through
-        // the /api/auth/login → /api/auth/pin-login/verify flow (TPIN as the
-        // second factor), never via a bare password on this provider.
         if ((user as any).twoFactorExempt && (user as any).pinLoginEnabled) return null;
 
         await recordSuccessfulLogin(identifier);
@@ -182,8 +209,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      // ── Fresh sign-in: seed the token (incl. the current tokenVersion) and
-      //    trust it for this pass — no validation needed, it was just minted.
       if (user) {
         token.id = user.id;
         token.userCode = (user as any).userCode ?? null;
@@ -197,7 +222,14 @@ export const authOptions: NextAuthOptions = {
         token.enabledServices = (user as any).enabledServices ?? [];
         token.twoFactorEnabled = (user as any).twoFactorEnabled ?? false;
         token.twoFactorExempt = (user as any).twoFactorExempt ?? false;
+
+        if (isDemoMode()) {
+          token.tokenVersion = 0;
+          return token;
+        }
+
         try {
+          const { prisma } = await import("./db");
           const seed = await prisma.user.findUnique({
             where: { id: user.id },
             select: { tokenVersion: true },
@@ -210,21 +242,24 @@ export const authOptions: NextAuthOptions = {
         return token;
       }
 
-      // ── Every subsequent request: re-validate against the DB so privilege
-      //    changes and forced sign-outs take effect immediately, and reject any
-      //    token whose version != the user's current tokenVersion (replay /
-      //    stolen-cookie defense).
-      //
-      //    If the DB is temporarily unreachable, return the stale token so the
-      //    session endpoint doesn't 500 on every page load — the next successful
-      //    check will catch up.
       if (token.id) {
+        // Demo mode: trust the token data (no DB to validate against)
+        if (isDemoMode()) {
+          const demoUser = findDemoUserById(token.id as string);
+          if (demoUser) {
+            token.name = demoUser.name;
+            token.walletBalance = demoUser.walletBalance;
+            token.status = demoUser.status;
+            token.role = demoUser.role;
+            token.enabledServices = demoUser.enabledServices;
+          }
+          return token;
+        }
+
         try {
+          const { prisma } = await import("./db");
+          const { getCachedSessionValidation, setCachedSessionValidation } = await import("./security/sessionValidationCache");
           const userId = token.id as string;
-          // Short-TTL cache: dashboard pages fire many API calls in parallel
-          // and each one would otherwise pay a full DB round trip here before
-          // doing any real work. Same-process privilege changes invalidate the
-          // cache immediately; cross-instance changes are bounded by the TTL.
           let fresh = getCachedSessionValidation(userId);
           if (fresh === undefined) {
             fresh = await prisma.user.findUnique({
@@ -293,7 +328,8 @@ export const authOptions: NextAuthOptions = {
     // Logout invalidates every outstanding token for this user (server-side),
     // so pressing Back / replaying a cached cookie cannot resurrect the session.
     async signOut({ token }) {
-      if (token?.id) {
+      if (token?.id && !isDemoMode()) {
+        const { bumpTokenVersion } = await import("./security/session");
         await bumpTokenVersion(token.id as string, { swallow: true });
       }
     },
@@ -405,7 +441,19 @@ export async function requireAuth(): Promise<SessionUser> {
   if (auth?.startsWith("Bearer ")) {
     const user = verifyMobileToken(auth.slice(7));
     if (user) {
-      // Refresh wallet balance from DB for accuracy
+      if (isDemoMode()) {
+        const demoUser = findDemoUserById(user.id);
+        if (demoUser) {
+          user.walletBalance = demoUser.walletBalance;
+          user.status = demoUser.status;
+        }
+        if (!isLoginAllowed(user.status)) {
+          throw new AuthError("Account is not active", 403);
+        }
+        return user;
+      }
+
+      const { prisma } = await import("./db");
       const dbUser = await prisma.user.findUnique({
         where: { id: user.id },
         select: { walletBalance: true, status: true },

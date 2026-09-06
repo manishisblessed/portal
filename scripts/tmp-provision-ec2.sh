@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "==> Paybridgex EC2 provisioning (idempotent)"
+echo "==> ShahWorks EC2 provisioning (idempotent)"
 export DEBIAN_FRONTEND=noninteractive
 
 echo "==> [1/7] apt update + upgrade"
@@ -42,13 +42,13 @@ echo "==> [6/7] directories"
 mkdir -p /home/ubuntu/logs
 
 echo "==> [7/7] clone/update repo"
-if [ -d /home/ubuntu/paybridgex/.git ]; then
-  cd /home/ubuntu/paybridgex
+if [ -d /home/ubuntu/shahworks/.git ]; then
+  cd /home/ubuntu/shahworks
   git fetch origin
   git reset --hard origin/main
 else
-  git clone https://github.com/manishisblessed/Paybridgex.git /home/ubuntu/paybridgex
-  cd /home/ubuntu/paybridgex
+  git clone https://github.com/manishisblessed/ShahWorks.git /home/ubuntu/shahworks
+  cd /home/ubuntu/shahworks
 fi
 echo "    repo commit: $(git rev-parse --short HEAD)"
 

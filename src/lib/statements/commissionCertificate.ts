@@ -85,9 +85,9 @@ export async function generateCommissionCertificatePdf(
     borderWidth: 1.5,
   });
 
-  center("Paybridgex", 22, bold, brand);
+  center("ShahWorks", 22, bold, brand);
   y -= 20;
-  center("K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED", 9, font, dim);
+  center("SHAH WORKS PRIVATE LIMITED", 9, font, dim);
   y -= 36;
 
   center("COMMISSION CERTIFICATE", 15, bold);
@@ -107,7 +107,7 @@ export async function generateCommissionCertificatePdf(
 
   const para = [
     `This is to certify that ${data.accountName} (registered mobile ${data.accountPhone}),`,
-    `engaged as ${data.role.replace(/_/g, " ").toLowerCase()} on the Paybridgex platform, has earned the`,
+    `engaged as ${data.role.replace(/_/g, " ").toLowerCase()} on the ShahWorks platform, has earned the`,
     `following commission during ${data.periodLabel} (${data.from.toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata" })} to ${data.to.toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata" })}):`,
   ];
   for (const l of para) {

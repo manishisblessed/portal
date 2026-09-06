@@ -182,7 +182,7 @@ export function Sidebar({
           <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-accent-500/25 blur-2xl" />
           <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest text-accent-300">
             <Sparkles className="h-3 w-3" />
-            Paybridgex Pro
+            ShahWorks Pro
           </p>
           <p className="mt-2 text-xs leading-relaxed text-white/70">
             {role === "retailer"

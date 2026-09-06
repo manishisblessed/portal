@@ -69,8 +69,8 @@ export default function CommissionsPage() {
               filename="commission-slabs"
               title={
                 role === "master-distributor"
-                  ? "Paybridgex · Commission Master"
-                  : "Paybridgex · Commission Slabs"
+                  ? "ShahWorks · Commission Master"
+                  : "ShahWorks · Commission Slabs"
               }
               subtitle="Service-wise rate-card"
               columns={[

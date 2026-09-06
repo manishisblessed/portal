@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Paybridgex Retailer",
-    "slug": "paybridgex-retailer",
-    "scheme": "paybridgex",
+    "name": "ShahWorks Retailer",
+    "slug": "shahworks-retailer",
+    "scheme": "shahworks",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,13 +14,13 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.paybridgex.retailer",
+      "bundleIdentifier": "com.shahworks.retailer",
       "infoPlist": {
-        "NSFaceIDUsageDescription": "Use Face ID to sign in to your Paybridgex account."
+        "NSFaceIDUsageDescription": "Use Face ID to sign in to your ShahWorks account."
       }
     },
     "android": {
-      "package": "com.paybridgex.retailer",
+      "package": "com.shahworks.retailer",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#131b4e"
@@ -38,7 +38,7 @@
       [
         "expo-local-authentication",
         {
-          "faceIDPermission": "Use Face ID to sign in to your Paybridgex account."
+          "faceIDPermission": "Use Face ID to sign in to your ShahWorks account."
         }
       ]
     ],

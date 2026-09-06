@@ -106,7 +106,7 @@ function CyclesTab() {
       <div className="flex justify-end gap-2">
         <ReportActions
           filename="settlements"
-          title="Paybridgex · Settlements"
+          title="ShahWorks · Settlements"
           subtitle="T+1 nodal settlements ledger"
           columns={[
             { key: "id", header: "Cycle ID" },

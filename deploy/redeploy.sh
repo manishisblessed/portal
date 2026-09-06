@@ -2,10 +2,10 @@
 set -euo pipefail
 
 echo "=========================================="
-echo "  Paybridgex — Redeploy"
+echo "  ShahWorks — Redeploy"
 echo "=========================================="
 
-cd /home/ubuntu/paybridgex
+cd /home/ubuntu/shahworks
 
 echo "[1/6] Pulling latest code..."
 git pull origin main

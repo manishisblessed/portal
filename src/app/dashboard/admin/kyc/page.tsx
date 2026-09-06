@@ -271,7 +271,7 @@ export default function AdminKycPage() {
           <>
             <ReportActions
               filename="kyc-queue"
-              title="Paybridgex · KYC Queue"
+              title="ShahWorks · KYC Queue"
               subtitle={`${rows.length} applicants`}
               columns={[
                 { key: "id", header: "KYC ID" },

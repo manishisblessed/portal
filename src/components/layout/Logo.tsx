@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 import { company } from "@/lib/data";
 
 /**
- * Official K.A. Paybridgex emblem — the circular blue-green mark with the
- * "K.A." monogram, shield-check and suspension bridge.
+ * Official ShahWorks emblem — the circular blue-green mark with the
+ * brand monogram, shield-check and suspension bridge.
  *
  * `variant="dark"` (default) is the artwork for light backgrounds;
  * `variant="light"` is the brighter version drawn for dark backgrounds.
@@ -22,7 +22,7 @@ export function LogoMark({
   return (
     <Image
       src={variant === "light" ? "/brand-mark-dark.png" : "/brand-mark.png"}
-      alt="Paybridgex logo"
+      alt="ShahWorks logo"
       width={size}
       height={size}
       priority
@@ -49,17 +49,17 @@ export function Logo({
     <Link
       href="/"
       className={cn("group inline-flex items-center gap-2.5", className)}
-      aria-label="Paybridgex home"
+      aria-label="ShahWorks home"
     >
       <LogoMark size={iconOnly ? 32 : 40} variant={variant} />
       {!iconOnly && (
         <span className="flex flex-col leading-none">
           <span className="font-display text-[20px] font-extrabold tracking-tight">
             <span className={variant === "light" ? "text-white" : "text-brand-700"}>
-              Pay
+              Shah
             </span>
             <span className={variant === "light" ? "text-accent-400" : "text-accent-600"}>
-              bridgex
+              Works
             </span>
           </span>
           {withTagline && (

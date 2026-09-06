@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Paybridgex — Payment Gateway, POS & QR Payments";
+export const alt = "ShahWorks — Payment Gateway, POS & QR Payments";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -85,9 +85,9 @@ export default async function OpengraphImage() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <span style={{ fontWeight: 600 }}>paybridgex.in</span>
+            <span style={{ fontWeight: 600 }}>shahworks.com</span>
             <span>·</span>
-            <span>info@paybridgex.in</span>
+            <span>info@shahworks.com</span>
           </div>
           <div style={{ display: "flex", gap: 18 }}>
             {["PG", "POS", "QR", "AePS", "DMT", "BBPS"].map((tag) => (

@@ -10,15 +10,15 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Team",
   description:
-    "Meet the Ahmedabad-based team building Paybridgex — engineers, operators and compliance specialists united by one mission: payments every Indian counter can trust."
+    "Meet the New Delhi-based team building ShahWorks — engineers, operators and compliance specialists united by one mission: payments every Indian counter can trust."
 };
 
-// TODO(paybridgex): replace placeholder team members with the real roster before launch.
+// TODO(shahworks): replace placeholder team members with the real roster before launch.
 const founder = {
   name: "Founder & Director",
   initials: "KA",
-  role: "K.A. Paybridgex Solution (OPC) Pvt. Ltd.",
-  bio: "Started Paybridgex in Ahmedabad with a simple conviction: the shopkeeper who serves a whole neighbourhood deserves the same payment infrastructure as a big-city enterprise. Every product decision still starts at the counter."
+  role: "Shah Works Pvt. Ltd.",
+  bio: "Started ShahWorks in New Delhi with a simple conviction: the shopkeeper who serves a whole neighbourhood deserves the same payment infrastructure as a big-city enterprise. Every product decision still starts at the counter."
 };
 
 const team = [
@@ -53,7 +53,7 @@ export default function TeamPage() {
             <span className="gradient-text">serious rails</span>
           </>
         }
-        description="Paybridgex is built by a compact Ahmedabad team that sits close to the merchants it serves — close enough to visit a counter, watch a transaction and fix what's broken the same week."
+        description="ShahWorks is built by a compact New Delhi team that sits close to the merchants it serves — close enough to visit a counter, watch a transaction and fix what's broken the same week."
       />
 
       {/* Founder feature */}

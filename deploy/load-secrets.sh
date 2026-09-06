@@ -13,31 +13,31 @@ set -euo pipefail
 #
 #   1) ssm  — SSM Parameter Store (SecureString) under a path prefix.
 #             Each app env var is a parameter, e.g.
-#               /paybridgex/prod/NEXTAUTH_SECRET      (SecureString)
-#               /paybridgex/prod/APP_ENCRYPTION_KEY   (SecureString)
-#               /paybridgex/prod/SAMEDAY_SETTLEMENT_API_KEY (SecureString)
-#               /paybridgex/prod/DATABASE_URL         (SecureString)
+#               /shahworks/prod/NEXTAUTH_SECRET      (SecureString)
+#               /shahworks/prod/APP_ENCRYPTION_KEY   (SecureString)
+#               /shahworks/prod/SAMEDAY_SETTLEMENT_API_KEY (SecureString)
+#               /shahworks/prod/DATABASE_URL         (SecureString)
 #             Put them there once with:
-#               aws ssm put-parameter --name /paybridgex/prod/NEXTAUTH_SECRET \
+#               aws ssm put-parameter --name /shahworks/prod/NEXTAUTH_SECRET \
 #                 --type SecureString --value "$(openssl rand -base64 32)"
 #
 #   2) secretsmanager — a single JSON secret holding all key/value pairs, e.g.
-#               aws secretsmanager create-secret --name paybridgex/prod \
+#               aws secretsmanager create-secret --name shahworks/prod \
 #                 --secret-string '{"NEXTAUTH_SECRET":"...","APP_ENCRYPTION_KEY":"..."}'
 #
 #  The EC2 instance role must allow ssm:GetParametersByPath + kms:Decrypt
 #  (or secretsmanager:GetSecretValue). No long-lived AWS keys on the box.
 #
 #  Usage:
-#    SECRETS_BACKEND=ssm SSM_PREFIX=/paybridgex/prod AWS_REGION=ap-south-1 \
+#    SECRETS_BACKEND=ssm SSM_PREFIX=/shahworks/prod AWS_REGION=ap-south-1 \
 #      bash deploy/load-secrets.sh
 # =====================================================================
 
 SECRETS_BACKEND="${SECRETS_BACKEND:-ssm}"
-SSM_PREFIX="${SSM_PREFIX:-/paybridgex/prod}"
-SECRET_NAME="${SECRET_NAME:-paybridgex/prod}"
+SSM_PREFIX="${SSM_PREFIX:-/shahworks/prod}"
+SECRET_NAME="${SECRET_NAME:-shahworks/prod}"
 AWS_REGION="${AWS_REGION:-ap-south-1}"
-ENV_OUT="${ENV_OUT:-/home/ubuntu/paybridgex/.env.production}"
+ENV_OUT="${ENV_OUT:-/home/ubuntu/shahworks/.env.production}"
 
 command -v aws >/dev/null 2>&1 || { echo "ERROR: aws CLI not installed"; exit 1; }
 

@@ -318,7 +318,7 @@ export default function AdminUsersPage() {
           <>
             <ReportActions
               filename="users"
-              title="Paybridgex · Users & Shops"
+              title="ShahWorks · Users & Shops"
               subtitle={`${users.length} users`}
               columns={[
                 { key: "id", header: "ID" },

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-F=/home/ubuntu/env-paybridgex
+F=/home/ubuntu/env-shahworks
 
 sed -i 's/\r$//' "$F"
-sed -i 's|^NEXTAUTH_URL=.*|NEXTAUTH_URL="https://paybridgex.in"|' "$F"
-sed -i 's|^NEXT_PUBLIC_APP_URL=.*|NEXT_PUBLIC_APP_URL="https://paybridgex.in"|' "$F"
+sed -i 's|^NEXTAUTH_URL=.*|NEXTAUTH_URL="https://shahworks.com"|' "$F"
+sed -i 's|^NEXT_PUBLIC_APP_URL=.*|NEXT_PUBLIC_APP_URL="https://shahworks.com"|' "$F"
 # NODE_ENV is managed by PM2/Next.js; a value here triggers a Next.js warning.
 sed -i '/^NODE_ENV=/d' "$F"
 # Payout cannot go live without a Same Day settlement/POS key — fail closed.

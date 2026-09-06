@@ -275,7 +275,7 @@ function WalletCard({ balance }: { balance: number }) {
           <Wallet className="h-5 w-5 text-accent-300" />
         </span>
         <span className="rounded-full bg-white/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-widest text-white/80 ring-1 ring-white/10">
-          Paybridgex Wallet
+          ShahWorks Wallet
         </span>
       </div>
       <p className="relative mt-5 text-[11px] font-semibold uppercase tracking-widest text-white/60">

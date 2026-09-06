@@ -152,7 +152,7 @@ export async function generateWalletStatementPdf(data: StatementData): Promise<U
   }
 
   // ── Letterhead ──
-  text("Paybridgex", M, 18, bold, brand);
+  text("ShahWorks", M, 18, bold, brand);
   y -= 16;
   text("Wallet Statement", M, 11, bold);
   y -= 20;

@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Retailer app, web dashboard, distributor suite and developer APIs — the four Paybridgex products that take you from a single counter to an enterprise integration."
+    "Retailer app, web dashboard, distributor suite and developer APIs — the four ShahWorks products that take you from a single counter to an enterprise integration."
 };
 
 /* ---------- mock-UI visuals ---------- */
@@ -79,7 +79,7 @@ function DashboardMock() {
         <span className="h-2.5 w-2.5 rounded-full bg-red-300" />
         <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
         <span className="h-2.5 w-2.5 rounded-full bg-accent-400" />
-        <span className="ml-3 text-[10px] text-ink-400">app.paybridgex.in/dashboard</span>
+        <span className="ml-3 text-[10px] text-ink-400">app.shahworks.com/dashboard</span>
       </div>
       <div className="p-5">
         <div className="grid grid-cols-3 gap-3">
@@ -184,7 +184,7 @@ function CodeMock() {
 
 const products = [
   {
-    name: "Paybridgex Retailer App",
+    name: "ShahWorks Retailer App",
     icon: Smartphone,
     badge: "Most popular",
     headline: "Your whole shop, in your pocket",
@@ -194,7 +194,7 @@ const products = [
     visual: PhoneMock
   },
   {
-    name: "Paybridgex Web Dashboard",
+    name: "ShahWorks Web Dashboard",
     icon: Laptop2,
     headline: "See every rupee in real time",
     text: "A full-width command centre for busy counters: transaction search, downloadable ledgers, multi-user roles and analytics that update by the second.",
@@ -203,7 +203,7 @@ const products = [
     visual: DashboardMock
   },
   {
-    name: "Paybridgex Distributor Suite",
+    name: "ShahWorks Distributor Suite",
     icon: Building2,
     headline: "Grow a network, not a headache",
     text: "Onboard retailers in minutes, set slab-wise commission overrides, push wallet float down the chain and watch settlements roll up — from one screen.",
@@ -212,7 +212,7 @@ const products = [
     visual: NetworkMock
   },
   {
-    name: "Paybridgex Developer APIs",
+    name: "ShahWorks Developer APIs",
     icon: Code2,
     headline: "Payments infrastructure, four lines at a time",
     text: "REST APIs for collections, payouts, AePS, BBPS and travel with sandbox keys on signup, webhooks for every event and predictable, versioned responses.",

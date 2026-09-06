@@ -2,7 +2,7 @@ import { Container } from "@/components/ui/Container";
 
 /**
  * Inner-page hero — left-aligned on a soft two-tone wash with the
- * Paybridgex bridge-arc watermark in the corner.
+ * ShahWorks bridge-arc watermark in the corner.
  */
 export function PageHero({
   eyebrow,

@@ -10,8 +10,8 @@ import { useAuth } from "@/lib/useAuth";
 /** Branding line shown on every payment result/receipt. */
 function payByLine(userCode?: string | null): string {
   return userCode
-    ? `Pay by Paybridgex · RT Code ${userCode}`
-    : "Pay by Paybridgex";
+    ? `Pay by ShahWorks · RT Code ${userCode}`
+    : "Pay by ShahWorks";
 }
 
 export type TxnResult = {
@@ -42,7 +42,7 @@ function buildReceiptHtml(r: NonNullable<TxnResult>, userCode?: string | null): 
 ${r.customer ? `<tr><td style="padding:6px 0;color:#666;font-size:13px">Customer</td><td style="padding:6px 0;text-align:right;font-weight:600;font-size:13px">${r.customer}</td></tr>` : ""}
 ${metaRows}
 <tr><td style="padding:6px 0;color:#666;font-size:13px">Date</td><td style="padding:6px 0;text-align:right;font-weight:600;font-size:13px">${date}</td></tr></table></div>
-<div class="foot"><div style="font-weight:600;color:#059669;margin-bottom:4px">${payByLine(userCode)}</div>Paybridgex — Smart Payments. Trusted Solutions.</div></div></body></html>`;
+<div class="foot"><div style="font-weight:600;color:#059669;margin-bottom:4px">${payByLine(userCode)}</div>ShahWorks — Smart Payments. Trusted Solutions.</div></div></body></html>`;
 }
 
 export function TransactionResult({

@@ -216,13 +216,13 @@ export default function FundsRequestPage() {
         description={
           isApprover
             ? "Approve incoming wallet top-up requests with bank reference. Auto-credit on approval."
-            : "Submit your bank deposit reference to top up your Paybridgex wallet within minutes."
+            : "Submit your bank deposit reference to top up your ShahWorks wallet within minutes."
         }
         actions={
           <>
             <ReportActions
               filename="fund-requests"
-              title="Paybridgex · Fund Requests"
+              title="ShahWorks · Fund Requests"
               subtitle={isApprover ? "Incoming approvals" : "My requests"}
               columns={[
                 { key: "id", header: "Request ID" },

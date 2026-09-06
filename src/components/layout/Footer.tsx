@@ -50,7 +50,7 @@ export function Footer() {
               Smart Payments. Trusted Solutions.
             </p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-400">
-              Paybridgex is the bridge between everyday counters and India&apos;s
+              ShahWorks is the bridge between everyday counters and India&apos;s
               payment rails — so anyone, from a village kirana to an urban
               distributor, can offer 60+ digital services and grow with us.
             </p>

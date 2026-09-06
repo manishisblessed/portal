@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "60+ digital services — AePS, money transfer, UPI QR, BBPS bills, recharges and travel — on one Paybridgex dashboard with instant settlement."
+    "60+ digital services — AePS, money transfer, UPI QR, BBPS bills, recharges and travel — on one ShahWorks dashboard with instant settlement."
 };
 
 const categories = [

@@ -120,7 +120,7 @@ export function TwoFactorSetupModal() {
 
   function downloadBackupCodes() {
     const text = [
-      "Paybridgex — 2FA Backup Codes",
+      "ShahWorks — 2FA Backup Codes",
       `Account: ${session?.user?.email}`,
       `Generated: ${new Date().toLocaleDateString()}`,
       "",
@@ -133,7 +133,7 @@ export function TwoFactorSetupModal() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "paybridgex-backup-codes.txt";
+    a.download = "shahworks-backup-codes.txt";
     a.click();
     URL.revokeObjectURL(url);
   }

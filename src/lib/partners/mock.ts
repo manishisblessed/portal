@@ -68,7 +68,7 @@ export const mockUpi: UpiProvider = {
     const orderId = ref("ORDR");
     return ok({
       orderId,
-      upiIntent: `upi://pay?pa=paybridgex@axisbank&pn=Paybridgex&am=${input.amount}&tn=${encodeURIComponent(input.note ?? "Paybridgex")}`,
+      upiIntent: `upi://pay?pa=shahworks@axisbank&pn=ShahWorks&am=${input.amount}&tn=${encodeURIComponent(input.note ?? "ShahWorks")}`,
       paymentUrl: `${process.env.NEXT_PUBLIC_APP_URL}/pay/${orderId}`
     });
   },

@@ -49,10 +49,10 @@ export default function Splash() {
             resizeMode="contain"
           />
         </View>
-        <Text style={styles.brand}>Paybridgex</Text>
+        <Text style={styles.brand}>ShahWorks</Text>
         <Text style={styles.tagline}>Smart Payments. Trusted Solutions.</Text>
       </View>
-      <Text style={styles.foot}>Powered by K.A. PAYBRIDGEX SOLUTION (OPC) PRIVATE LIMITED</Text>
+      <Text style={styles.foot}>Powered by SHAH WORKS PRIVATE LIMITED</Text>
     </LinearGradient>
   );
 }

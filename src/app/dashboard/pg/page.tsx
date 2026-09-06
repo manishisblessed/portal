@@ -31,7 +31,7 @@ export default function PgPage() {
     if (!amount) return;
     const ref = generateRefId("PAY");
     setLink(
-      `https://pay.paybridgex.in/l/${ref.toLowerCase()}?am=${amount}`
+      `https://pay.shahworks.com/l/${ref.toLowerCase()}?am=${amount}`
     );
     setCopied(false);
   }

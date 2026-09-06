@@ -262,7 +262,7 @@ export default function AdminSubAdminsPage() {
             <>
               <ReportActions
                 filename="sub-admins"
-                title="Paybridgex · Sub-Admins"
+                title="ShahWorks · Sub-Admins"
                 columns={[
                   { key: "id", header: "ID" },
                   { key: "name", header: "Name" },
