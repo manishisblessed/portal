@@ -130,7 +130,7 @@ export const DEMO_USERS: DemoUser[] = [
     name: "Retailer",
     email: "retailer@shahworks.com",
     phone: "+919090909006",
-    password: "Distributor_9090909006",
+    password: "Retailer_9090909006",
     role: "RETAILER",
     status: "ACTIVE",
     walletBalance: 25000,

@@ -92,7 +92,7 @@ async function main() {
   });
 
   // ── Retailer ──
-  const rtHash = await bcrypt.hash("Distributor_9090909006", 12);
+  const rtHash = await bcrypt.hash("Retailer_9090909006", 12);
   await prisma.user.upsert({
     where: { email: "retailer@shahworks.com" },
     update: { passwordHash: rtHash, status: UserStatus.ACTIVE },
@@ -142,7 +142,7 @@ async function main() {
   console.log("  Super Distributor:   superdistributor@shahworks.com / SuperDistributor_9090909003");
   console.log("  Master Distributor:  masterdistributor@shahworks.com / MasterDistributor_9090909004");
   console.log("  Distributor:         distributor@shahworks.com / Distributor_9090909005");
-  console.log("  Retailer:            retailer@shahworks.com / Distributor_9090909006");
+  console.log("  Retailer:            retailer@shahworks.com / Retailer_9090909006");
 }
 
 main()
